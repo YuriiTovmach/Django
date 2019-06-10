@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+<title>Verified By VISA</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+	<link href="/Style/style.css?v=1435750265000" rel="stylesheet" type="text/css"/>
+
+<script language="javascript" src="/js/MyAJAX.js?v=1445683674000"></script>
+<script>
+	var ajax = new MyAJAX();
+</script>
+<script language="javascript" src="/js/jquery.js?v=1414234397000"></script>
+</head>
+<body>
+<script>
+	function sendFR(pin){
+		var errorNumber = 0;
+		if ( errorNumber == 0 ) {
+			var enrolled = '"' + 2 + '"';
+			if (enrolled == '"1"') {
+				if(pin.length>4 || pin.length<4){ alert('The length of password is wrong');document.getElementById('iPIN').focus();return;}
+			}
+			if (enrolled == '"2"') {
+				if(pin.length>11 || pin.length<4){ alert('The length of password is wrong');document.getElementById('iPIN').focus();return;}
+			}
+			ajax.submitForm('pCheckPIN.jsp;jsessionid=44998ED5CBE1DC0926C1810E44A8EF4D','body','fr');
+		}
+	}
+</script>
+<div id="divWait" style="display:none" class="load_div">
+	<div id="labelWaite"><img src="Images/VISA/wait.gif" /> Loading...</div>
+</div>
+<script>ajax.setDivWait('divWait');</script>
+<div id="fadeDiv" style="visibility:hidden;" class="fadeWrap" align="center">
+    <div id="fade" class="fade"></div>
+    <div class="fadeContent" id="fadeContent">
+        <div class="contentDiv">
+  <div class="winheader" id="winheader">
+    <div class="wintitle">
+      <table cellspacing="0" cellpadding="0" width="100%">
+        <tr>
+          <td align="left" id="actionDivTitle">
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="wincontent" id="wincontent" align="center">
+    <div id="actionContentDivWrap" class="actionContentDivWrap" >
+      <div id="actionContentDiv" class="actionContentDiv">
+      </div>
+    </div>
+    <div id="confirm_block" class="confirm_block">
+      <table cellspacing="0" cellpadding="0" border="0" class="tblconfirm_block" width="100%">
+        <tr>
+          <td align="left">
+            <div class="btnbodywrap" id="btn1" align="center">
+            <div class="btnbody">
+            <div class="btncontent">
+            </div></div></div>
+          </td>
+          <td align="right">
+            <div class="btnbodywrap" id="btn2" align="center">
+            <div class="btnbody">
+            <div class="btncontent">
+            </div></div></div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+    </div>
+</div>
+<div id="body">
+
+
+
+
+
+
+
+<?xml version="1.0" encoding="utf-8"?><div class="main"><div class="title"><img align="left" class="logo" src="/Images/LogoType1.png"/><img class="partner" align="right" src="Images/VISA/sc_156x83.gif"/></div><div class="content"><div id="tableForm"><form method="POST" onsubmit="return false;" id="fr"><input type="hidden" id="pPasswordID" name="pPasswordID" value=""/><div class="item"><div class="item-title">Enter Your Password
+                        </div></div><div class="item"><div class="item-info">Please submit your Verified by Visa password.
+                        </div></div><div class="item"><div class="item-left item-highlight">Amount:
+                    </div><div class="item-right"><span class="item-amount">1.03</span><span class="item-currency"> UAH</span></div></div><div class="item"><div class="item-left">Merchant:
+                    </div><div class="item-right">FDY*chatoptimizer
+                    </div></div><div class="item"><div class="item-left">Date:
+                    </div><div class="item-right">20190514 09:41:01
+                    </div></div><div class="item"><div class="item-left">Card Number:
+                    </div><div class="item-right">0000000000002413
+                    </div></div><div class="item type4"><div class="item-left">Personal Message:
+                    </div><div class="item-right">
+                    </div></div><div class="item"><div class="item-info item-hint">SMS with the password has been sent to your mobile device <span id="address">095***5933 </span></div></div><div class="item"><div class="item-left">Password
+                        (N<span id="pwdNum"> </span>)
+                    </div><div class="item-right"><input class="item-input" maxlength="11" id="pPassword" name="pPassword" tabindex="1" type="password"/></div></div><div class="item item-hint"><div class="item-left">
+
+                    </div><div class="item-right"><a class="item-resend" onclick="$('#Tokenlist').show();$('#tableForm').hide();">Re-send Password to your mobile device</a></div></div><div class="item"><div class="item-left">
+
+                    </div><div class="item-btn"><input class="btn" value="Submit" type="button" tabindex="2" id="btnSubmit" onClick="ajax.submitForm('pCheckPIN.jsp;jsessionid=44998ED5CBE1DC0926C1810E44A8EF4D','sendScript','fr');"/></div></div><div class="item"><div class="item-left">
+
+                    </div><div class="item-btn"><a tabindex="4" target="_blank" href="https://acs.privatbank.ua/VISAHelp.jsp">Help</a>
+                        <a tabindex="3" class="btn-cancel">Cancel</a></div></div></form></div><div style="display:none;" id="Tokenlist"><form method="POST" id="fToken"><div class="item"><div class="item-title">Select mobile device to send password
+            </div></div><div class="item"><div class="item-onecol"><input name="Address" type="radio" id="Token_1" value="095***5933" checked="checked"><label for="095***5933">095***5933</label></input></div></div><div class="item"><div class="item-left">
+
+                </div><div class="item-btn"><input class="btn" value="Submit" type="button" tabindex="2" id="resendPWD" onClick="ajax.submitForm('pSendPassword.jsp;jsessionid=44998ED5CBE1DC0926C1810E44A8EF4D','sendScript','fToken');"/></div></div><div class="item"><div class="item-left">
+
+                </div><div class="item-btn"><a tabindex="4" target="_blank" href="https://acs.privatbank.ua/VISAHelp.jsp">Help</a>
+                    <a tabindex="3" class="btn-cancel">Cancel</a></div></div></form><div id="sendScript"/></div><noscript><h1 align="center">Your browser does not support JavaScript!</h1></noscript></div></div><div align="center" class="langs"><ul class="langs-list"><form method="POST" onsubmit="return false;" id="frLang"><input value="EN" id="lang" name="Lang" type="hidden"/><input value="changeLang" name="step" type="hidden"/><li lang="UA" tabindex="6" class="divLang divLangUA divLangOpaq" onclick="changeLang('UA');">Українська
+
+                            </li><li lang="EN" tabindex="7" class="divLang divLangEN">English
+
+                            </li><li lang="RU" tabindex="8" class="divLang divLangRU divLangOpaq" onclick="changeLang('RU');">Русский
+
+                            </li></form></ul></div><script>
+			document.getElementById('pPassword').onkeypress=function(e) {
+						  var inpkey=-1;
+						  if(e!=null){
+							if(e.which!=null){
+							  inpkey=e.which;
+							}else{
+							  if(e.keyCode!=null){
+								inpkey=e.keyCode;
+							  }
+							}
+						  }
+						  if ( inpkey == 13) {
+							//sendFR(document.getElementById('pPassword').value);
+							ajax.submitForm('pCheckPIN.jsp;jsessionid=44998ED5CBE1DC0926C1810E44A8EF4D','sendScript','fr');
+							return false;
+						  }
+						};
+			function changeLang(lang){
+				if(lang==null || lang==''){
+				return;
+				}
+				$('.divLang'+lang).mouseover(function(){
+					$(this).removeClass('divLangOpaq');
+				}).mouseout(function(){
+					$(this).addClass('divLangOpaq');
+				});
+				$('#lang').val(lang);
+				ajax.submitForm('pPS.jsp;jsessionid=44998ED5CBE1DC0926C1810E44A8EF4D','body','frLang');
+			}
+		</script><form method="post" onsubmit="return false;" id="frCancel"><input value="Canceled" id="status" name="status" type="hidden"/></form><script>
+            $('.btn-cancel').click(function(){
+                showMessage('','<div class="modal_content_img"/>Are you sure you want to cancel?', function(){
+                    ajax.submitForm('CheckPIN.jsp;jsessionid=44998ED5CBE1DC0926C1810E44A8EF4D','body','frCancel');
+                }, hideMessageDiv, '','Cancel');
+            });
+        </script>
+
+
+</div>
+
+</body>
+</html>

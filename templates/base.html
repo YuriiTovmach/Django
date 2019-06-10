@@ -1,0 +1,79 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!--Adapt-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <!--<meta content="telephone=no" name="format-detection" />-->
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge" />-->
+
+    <title>Проволока</title>
+    <!--SEO-->
+    <meta name="description" content="Склад-магазин проволоки" />
+	<meta name="keywords" content="склад магазин проволоки, продажа проволоки, проволока, проволока стальная, проволока пружинная, проволока оцинкованная, проволока нихромовая, проволока сварочная, проволока вязальная, проволока низкоуглеродистая ГОСТ 3282-74 (ОК) " />
+
+
+    <!--Mobile adapt-->
+    <!--<link rel="stylesheet" type="text/css" media="(min-width:481px) and (max-width:768px)" href="{ % static 'css/mobile.css' % }" />-->
+
+
+    <!-- Bootstrap-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+    <!-- Slider-->
+    <link rel="stylesheet" href="{% static 'css/slider.css' %}">
+    <!--Slider_car-->
+    <link rel="stylesheet" href="{% static 'css/call.css' %}">
+    <link rel="stylesheet" href="{% static 'css/call_element.css' %}">
+
+    <!--contacts-->
+    <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+
+    <!--Data-->
+    <link rel="stylesheet" href="{% static 'css/data.css' %}">
+
+
+</head>
+<body>
+
+    <div class="wrapper">
+        <div class="wrapper-content">
+            {% include 'navbar.html' %}
+
+
+            {% block content %}
+            {% endblock content %}
+        </div>
+
+    </div>
+
+     {% include 'footer.html' %}
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
+
+
+
+    <!-- Slider -->
+    <script src="{% static 'js/slider.js' %}"></script>
+
+
+
+
+
+
+</body>
+</html>

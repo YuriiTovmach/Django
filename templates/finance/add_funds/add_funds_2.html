@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Checkout</title>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5JD8897');</script>
+    <!-- End Google Tag Manager -->
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!--[if lt IE 9]><script src="/static_common/old.js"></script><![endif]-->
+    <!--#if expr="$date_local" --><!--#include virtual="require.inc"--><!--#else-->
+    <script>(function () {
+        this.define = function () {
+        };
+        this.requirejs = function (m, c) {
+            c()
+        };
+    })();</script>
+    <script async src="/static_common/v1/checkout.js?cache__1556142539285"></script>
+    <!--#endif-->
+    <link href="/static_common/v1/css/checkout.css?cache__1556142539286" rel="stylesheet" type="text/css">
+
+</head>
+<body class="pages-checkout">
+
+<div id="checkout_wrapper">
+    <div class="spinner">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+    </div>
+</div>
+
+
+<script id="checkout_index" type="text/stache">
+{{page_title checkout.merchant.localized_name }}
+{{#if order.inProgress}}
+{{body_class order.getBodyStatusClass }}
+{{else}}
+{{body_class "pages-checkout" }}
+{{/if}}
+{{style checkout.custom_css}}
+{{>checkout_shopinfo}}
+{{>checkout_overview}}
+{{#if order.inProgress}}
+    {{>checkout_pending}}
+{{else}}
+    {{>checkout_tabs}}
+    <div class="page-section page-section-content">
+    <div class="loading-banner hide">
+    <p>{{_ 'Please wait' }}&hellip;</p>
+    </div>
+    <div class="tab-content">
+    {{#each checkout.tabs}}
+    <div class="tab-pane {{#is @key checkout.active_tab }}active{{/is}}" data-tab="{{@key}}">
+    {{#switch @key }}
+    {{#case "card"}}{{>checkout_creditcard}}{{/case}}
+    {{#case "trustly"}}{{>checkout_trustly}}{{/case}}
+    {{#case "sepa"}}{{>checkout_sepa}} {{/case}}
+    {{#case "credit"}}{{>checkout_credit}}{{/case}}
+    {{#case "loans"}}{{>checkout_loans}}{{/case}}
+    {{#case "liqpay_cash"}}{{>checkout_cash}} {{/case}}
+    {{#default}} {{>checkout_blocks}} {{/default}}
+    {{/switch}}
+    </div>
+    {{/each}}
+    </div>
+    </div>
+{{/if}}
+
+{{#if state.modal }}
+<div class="modal show">
+  <a class="modal-close" can-click="state.removeAndReload('modal')">×</a>
+  <div class="modal-content">
+    <div class="modal-body">
+      <iframe src="{{ state.modal.url }}">
+    </div>
+  </div>
+</div>
+{{/if}}
+
+{{#if state.receipt }}
+<div class="modal show">
+  <a class="modal-close" can-click="state.removeAndReload('receipt')">×</a>
+  <div class="modal-content">
+    <div class="modal-receipt">
+        <div class="modal-receipt-header clearfix">
+            <div class="modal-receipt-qr">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{state.receipt.url}}">
+            </div>
+            <div class="modal-receipt-logo">
+                <img src="/static_common/v1/img/customer/default.svg">
+            </div>
+            <div>{{ _ 'Сервіс прийому платежів' }}</div>
+        </div>
+        <div class="modal-receipt-title">
+            {{ _ 'Реквізити для сплати рахунку' }} № {{ state.receipt.send_data.receipt_id }}
+        </div>
+        <div class="modal-receipt-body">
+            <table class="table table-bordered table-bordered3">
+                <col width="35%">
+                <tr>
+                    <td class="receipt-field-label">{{ _ 'Отримувач платежу' }}</td>
+                    <td class="receipt-field-value">{{ state.receipt.send_data.receiver }}</td>
+                </tr>
+                <tr>
+                    <td class="receipt-field-label">{{ _ 'Поточний рахунок' }}</td>
+                    <td class="receipt-field-value">{{ state.receipt.send_data.current_bill }}</td>
+                </tr>
+                <tr>
+                    <td class="receipt-field-label">{{ _ 'Код ЄДРПОУ' }}</td>
+                    <td class="receipt-field-value">{{ state.receipt.send_data.usreou }}</td>
+                </tr>
+                <tr>
+                    <td class="receipt-field-label">{{ _ 'Установа банку' }}</td>
+                    <td class="receipt-field-value">{{ state.receipt.send_data.bank }}</td>
+                </tr>
+
+                <tr>
+                    <td class="receipt-field-label">{{ _ 'МФО Банку' }}</td>
+                    <td class="receipt-field-value">{{ state.receipt.send_data.mfo }}</td>
+                </tr>
+                <tr>
+                    <td class="receipt-field-label">{{ _ 'Призначення' }}</td>
+                    <td class="receipt-field-value">{{ state.receipt.send_data.receipt_id }}</td>
+                </tr>
+            </table>
+            <table class="table table-bordered">
+                <col width="35%">
+                <tr>
+                    <td class="receipt-field-label">{{ _ 'Кiнцева дата платежу' }}</td>
+                    <td class="receipt-field-value">{{ state.receipt.send_data.end_date }}</td>
+                </tr>
+            </table>
+            <table class="table table-bordered">
+                <col width="35%">
+                <tr>
+                    <td class="receipt-field-label bold">{{ _ 'Сумма' }}</td>
+                    <td class="receipt-field-value">{{ amount state.receipt.send_data.amount }} {{_ 'UAH'}}</td>
+                </tr>
+            </table>
+            <a href="{{ state.receipt.url }}" class="btn btn-block btn-lime" target="_blank">
+                    {{ _ 'Зберегти квитанцію' }}
+            </a>
+        </div>
+    </div>
+  </div>
+</div>
+{{/if}}
+
+
+{{#if state.requestForm }}
+<div class="modal show">
+  <a class="modal-close" can-click="state.removeAndReload('requestForm')">×</a>
+  <div class="modal-content">
+    <div class="modal-body">
+        <form can-control="ui.form.validate,ui.form.popup" class="popup-form">
+            <input type="hidden" name="payment_system" value="{{ state.paymentSystem }}">
+            <div class="popup-row">
+                <img class="popup-logo" src="https://cdn.jsdelivr.net/npm/fondy-icons/dist/svg/banks/logo-blik.svg">
+            </div>
+            <div class="popup-row">
+                <div class="popup-message">
+                    {{_ 'Type in 6 digit code and press pay to commit blik payment' }}
+                </div>
+            </div>
+            <div class="popup-divider"></div>
+            <div class="popup-row">
+                <label class="popup-label" for="{{ state.requestForm.name }}">{{_ state.requestForm.label }}:</label>
+                <input type="text" class="popup-input wide"
+                    placeholder="{{ state.requestForm.placeholder }}"
+                    data-valid="{{ state.requestForm.validate }}"
+                    id="{{ state.requestForm.name }}"
+                    name="{{ state.requestForm.name }}">
+             </div>
+             <div class="popup-row">
+                <button type="submit" class="popup-button">{{_ 'Confirm' }}</button>
+             </div>
+        </div>
+    </div>
+  </div>
+</div>
+{{/if}}
+
+
+{{#if state.submit3ds }}
+<div class="modal show">
+  <a class="modal-close" can-click="state.remove('submit3ds')">×</a>
+  <div class="modal-content">
+    <div class="modal-message">
+      <div class="modal-message-title">{{_ 'Payment was not completed successfully' }}</div>
+      <div class="modal-message-descr">{{_ 'Please try again' }}</div>
+      <div class="modal-message-buttons">
+            <a class="button muted" can-click="state.remove('submit3ds')">{{_ 'Back' }}</a>
+            <a class="button success" can-click="state.submit()">{{_ 'Repeat payment' }}</a>
+      </div>
+      <div class="modal-message-info">
+        {{_ 'payment will be repeated in' }} {{ state.getDuration }} {{_ 'sec' }}.
+      </div>
+    </div>
+  </div>
+</div>
+{{/if}}
+
+</script>
+
+<script id="checkout_shopinfo" type="text/stache">
+    <div class="page-section page-section-shopinfo">
+        <div class="container">
+            <div class="row">
+                {{#if checkout.merchant.logo_url }}
+                <div class="col col-shoplogo"><img src="{{ checkout.merchant.logo_url }}"></div>
+                {{ else }}
+                <div class="col col-shoplogo"><img src="/static_common/v1/img/customer/default.svg"></div>
+                {{/if}}
+                <div class="col col-shoptitle">
+                    {{ checkout.merchant.localized_name }}
+                </div>
+                <div class="col col-language" can-control="ui.select.language">
+                    <label class="icon icon-flag" for="language-block"></label>
+                    <select id="language-block" class="form-control">
+                        <option value="ru">Русский</option>
+                        <option value="en">English</option>
+                        <option value="uk">Українською</option>
+                        <option value="lv">Latviešu</option>
+                        <option value="de">Deutsch</option>
+                        <option value="fr">Français</option>
+                        <option value="cs">Čeština</option>
+                        <option value="sk">Slovenský</option>
+                        <option value="ro">Română</option>
+                        <option value="es">Español</option>
+                        <option value="pl">Polski</option>
+                        <option value="it">Italiano</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="checkout_overview" type="text/stache">
+<div class="page-section page-section-overview">
+<div class="container">
+<div class="row-group">
+{{#if checkout.order.verification }}
+    <div class="row row-verify">
+        <div class="col col-label">
+            {{_ 'Card verification' }}:
+        </div>
+        <div class="col col-value order-content">
+            <div class="txt-safewidth txt-forcewrap">
+                {{#if order.isVerificationAmount }}
+                    {{ _ 'a random amount has been temporarily blocked on your card' }}
+                    {{ _ 'To confirm that you are owner of the card - contact the bank, that issued it, to clarify this amount or check it by yourself through the online-banking service' }}
+                {{ else }}
+                    {{_ 'Amount is hold on your credit card account' }}
+                {{/if}}
+            </div>
+        </div>
+    </div>
+{{else}}
+    {{#if pay.isButton }}
+        {{>checkout_pay}}
+    {{ else }}
+        {{#if checkout.isButton }}
+            {{#each checkout.merchantData}}
+            <div class="row row-extra">
+                <label class="col col-label">{{label}}</label>
+                <div class="col col-value">
+                    <div class="txt-safewidth txt-forcewrap">
+                        {{value}}
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        {{else}}
+            <div class="row row-desc">
+                <div class="col col-label">{{_ 'Order description' }}:</div>
+                <div class="col col-value order-content">
+                    <div class="txt-safewidth txt-forcewrap">
+                        {{ checkout.order.order_desc }}
+                    </div>
+                </div>
+            </div>
+        {{/if}}
+        <div class="row row-amount">
+            <div class="col col-label">
+                {{#if checkout.order.discount }}
+                    {{_ 'Amount before discount' }}:
+                {{else}}
+                    {{_ 'Order amount' }}:
+                {{/if}}
+            </div>
+            <div class="col col-value order-amount">
+                <div class="txt-amount">
+                    <big class="order-amount-total">{{ checkout.order.actual_amount }}</big>
+                    <sup class="order-currency"> {{_ checkout.order.currency }}</sup>
+                </div>
+                {{#if checkout.order.fee }}
+                    <div class="order-amount-details">
+                        {{_ 'Total amount' }} : <span class="order-amount-value">{{ checkout.order.amount }}</span>
+                         {{_ 'Commission' }}: <span class="order-fee-value">{{ checkout.order.fee }}</span>
+                    </div>
+                 {{/if}}
+            </div>
+        </div>
+        {{#if checkout.order.discount }}
+            <div class="row">
+                <div class="col col-label">
+                    {{_ 'Discount' }}:
+                </div>
+                <div class="col col-value order-content">
+                    <div class="txt-safewidth txt-forcewrap order-discount-fee">
+                        {{ checkout.order.discount.fee }}
+                        <sup class="order-currency">
+                            {{ _ checkout.order.currency  }}
+                        </sup>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-label">{{_ 'Amount after discount' }}:</div>
+                <div class="col col-value order-content">
+                    <div class="txt-safewidth txt-forcewrap order-discount-amount">
+                        {{ checkout.order.discount.actual_amount }}
+                        <sup class="order-currency">
+                            {{_ checkout.order.currency }}
+                        </sup>
+                    </div>
+                </div>
+            </div>
+        {{/if}}
+    {{/if}}
+{{/if}}
+</div>
+</div>
+</div>
+
+</script>
+
+<script id="checkout_pending" type="text/stache">
+    {{order.paymentProcessing}}
+        <div class="page-section page-section-status">
+            {{#if order.pending }}
+            <div class="container">
+                <div class="padd">
+                    <div class="txt-loading">{{_ 'Your payment is being processed' }}&hellip;</div>
+                </div>
+            </div>
+            {{else}}
+            <div class="container">
+                <div class="padd">
+                <h1 id="message_header">{{ _ order.order_data.order_status}}</h1>
+                <div class="row-group">
+                    <div class="row">
+                        <div class="col col-label">{{_ '№ of payment in' }} {{_ 'payment system' }}:</div>
+                        <div class="col col-value">{{ order.order_data.payment_id }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-label">{{_ '№ of payment in' }} {{ checkout.merchant.localized_name }}:</div>
+                        <div class="col col-value">{{order.order_data.order_id}}</div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            {{/if}}
+        </div>
+        {{#if order.url}}
+        <div class="page-section">
+            <div class="btn-row padd">
+                <button class="btn btn-block btn-yellow btn-return" can-click="order.navigateToMerchant">
+                    <span><i class="icon icon-return"></i>{{_ 'Return to shop web-site' }}</span>
+                </button>
+            </div>
+        </div>
+        {{/if}}
+</script>
+
+<script id="checkout_tabs" type="text/stache">
+    <div class="page-section page-section-tabs">
+        <div class="container">
+            <ul class="nav nav-tabs control_checkout_tabs" can-control="ui.tabs.checkout">
+                <li class="label">{{_ 'Payment method' }}</li>
+                {{#each checkout.sortTabs}}
+                <li data-button="{{@key}}" class="{{#is @key checkout.active_tab }}active{{/is}}">
+                    <a href="" title="{{_ @key }}">{{_ @key }}</a>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</script>
+
+
+<script id="checkout_trustly" type="text/stache">
+<link href="/static_common/v1/css/pl.css?cache__1556142539286" rel="stylesheet" type="text/css">
+<div class="container" data-group="{{ checkout.default_country }}" {{ data 'checkout' checkout }}  can-control="ui.payment.trustly">
+    {{>checkout_infobox}}
+    <div class="form-group form-group-trustly {{#if checkout.trustly.onlyOne }}hide{{/if}}">
+        <label class="control-label">{{ _ 'Choose your country or region' }}:</label>
+        <select class="form-control" data-country name="group">
+        {{#each checkout.trustly.countries }}
+            <option value="{{ id }}">{{ text }}</option>
+        {{/each}}
+        </select>
+    </div>
+    {{#if checkout.trustly.showFilter }}
+    <div class="form-group form-group-trustly" data-form-group-filter>
+        <label class="control-label">{{ _ "or start typing your" }}:</label>
+        <input type="text" name="filter" data-filter placeholder="{{_ "bank's name, IBAN, BLZ"}}" class="form-control">
+    </div>
+    {{/if}}
+    <ul class="nav nav-blocks" data-container="" can-control="ui.payment.blocks" {{data 'form' form}}>
+    {{#each checkout.trustly.selected }}
+        <li order="{{ uid }}" data-group="{{country}}" data-ps="{{ id }}"  data-iban="{{ iban }}"  data-name="{{ name }}">
+            <a class="{{group}} {{group}}-{{ uid }}" href="#">
+                <span class="name">{{ name }}</span>
+                <span class="iban">{{ iban }}</span>
+                <span class="icon" style="background-image: url('https://pay.fondy.eu/icons/dist/svg/banks/{{ uid }}.svg');"></span>
+            </a>
+        </li>
+    {{/each}}
+    </ul>
+    {{#if checkout.trustly.total.length }}
+    <div class="btn-row">
+        <button class="btn btn-block btn-lime"  can-click="checkout.loadMoreTrustly()">
+            <span>{{_ 'Load more...' }}</span>
+        </button>
+    </div>
+    {{/if}}
+</div>
+</script>
+
+<script id="checkout_blocks" type="text/stache">
+<div class="container">
+    {{>checkout_infobox}}
+    <ul class="nav nav-blocks" can-control="ui.payment.blocks">
+        {{#each payment_systems}}
+            <li data-ps="{{ @key }}">
+                <a class="{{../@key}} {{../@key}}-{{ @key }}" href="#">{{ name }}</a>
+            </li>
+        {{/each}}
+    </ul>
+</div>
+</script>
+
+
+<script id="checkout_sepa" type="text/stache">
+        <form class="form-horizontal form-sepa" can-control="ui.form.validate,ui.form.sepa">
+            <div class="container">
+            <div class="form-group">
+                <label class="control-label">{{_ 'Name' }}</label>
+                <div class="form-field">
+                    <input type="text" data-valid="required" name="sender_name" class="form-control">
+                    <div class="error-wrapper error-valid-sender_name"><div class="error"></div></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">{{_ 'Last Name' }}</label>
+                <div class="form-field">
+                    <input type="text" data-valid="required" name="sender_familyName" class="form-control">
+                    <div class="error-wrapper error-valid-sender_familyName"><div class="error"></div></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">{{_ 'BIC' }}</label>
+                <div class="form-field">
+                    <input type="text" data-valid="required" name="bic" class="form-control">
+                    <div class="error-wrapper error-valid-bic"><div class="error"></div></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">{{_ 'IBAN' }}</label>
+                <div class="form-field">
+                    <input type="text" data-valid="required" name="iban" class="form-control">
+                    <div class="error-wrapper error-valid-iban"><div class="error"></div></div>
+                </div>
+            </div>
+
+            </div>
+            <div class="btn-row">
+                <button type="submit" class="btn btn-block btn-lime">
+                    <span>{{_ 'Checkout' }}</span>
+                </button>
+            </div>
+        </form>
+
+</script>
+
+<script id="checkout_infobox" type="text/stache">
+  {{#if checkout.order.error_code }}
+    <div class="infobox error" id="infobox">
+        <div class="close"></div>
+        <div class="bold">{{checkout.order.error_code}}</div>
+        <div>{{checkout.order.error_description}}</div>
+    </div>
+    {{else}}
+    <div class="infobox hide" id="infobox"></div>
+    {{/if}}
+</script>
+
+<script id="checkout_creditcard" type="text/stache">
+    <form can-control="ui.form.validate,ui.form.checkout,ui.infobox">
+    <div class="container page-pne">
+    {{>checkout_infobox}}
+    <div class="cards">
+            <div class="card card-front">
+            <div class="icons-cc">
+                <a href="https://www.visa.com" target="_blank"><i class="icon-cc visa"></i></a>
+                <a href="https://www.mastercard.com" target="_blank"><i class="icon-cc mc"></i></a>
+                <a href="https://www.mastercard.com/ie/consumer/maestro.html" target="_blank"><i class="icon-cc maestro"></i></a>
+            </div>
+            <input type="hidden" value="" name="hash">
+            <div class="form-group" id="credit_card_number_row">
+            <label for="credit_card_number" class="control-label">{{_ 'Card Number' }}
+            <i class="icon icon-help" title="{{_ 'info_card_number' }}">?</i></label>
+            <div class="form-field">
+            <input value="{{order.getMaskedCard}}" placeholder="{{_ 'Card Number' }}" type="text" data-valid="required;ccard"
+                can-control="ui.creditcard,ui.input.suggest"
+                data-model="model.checkout.cards" name="card_number"
+                maxlength="23" data-minlength="19" data-infobox="{{_ 'info_card_number' }}"
+                class="form-control next-input silver" id="credit_card_number">
+            <div class="error-wrapper error-valid-card_number"><div class="error"></div></div>
+            </div>
+            </div>
+
+            <div class="form-group" id="credit_card_expire_row">
+            <label for="expire_month" class="control-label">{{_ 'Valid thru' }}
+            <i class="icon icon-help" title="{{_ 'info_expire' }}">?</i></label>
+            <div class="form-field" can-control="ui.expire_date">
+                <input type="tel" data-infobox="{{_ 'info_expire' }}" data-valid="required;exp_date"
+                placeholder="{{_ 'MM' }}" maxlength="2"
+                class="form-control next-input silver" id="expire_month" name="expire_month">
+                <span class="expire-delimiter">/</span>
+                <input type="tel" data-infobox="{{_ 'info_expire' }}" data-valid="required;exp_date"
+                placeholder="{{_ 'YY' }}" maxlength="2" class="form-control next-input silver"
+                id="expire_year" name="expire_year">
+                <div class="error-wrapper error-valid-expire_year error-valid-expire_month">
+                <div class="error"></div>
+                </div>
+            </div>
+            </div>
+
+            <div class="icon-brands">
+                <a href="https://www.visaeurope.com/making-payments/verified-by-visa/" tabindex="-1"
+                target="_blank">
+                    <img src="../../static_common/v1/img/ico/verified-visa.svg">
+                </a>
+                <a href="https://www.mastercard.us/en-us/consumers/features-benefits/securecode.html"
+                tabindex="-1" target="_blank">
+                    <img src="../../static_common/v1/img/ico/verified-mastercard.svg">
+                </a>
+            </div>
+
+            </div>
+
+            <div class="card card-back">
+            <div class="stripe"></div>
+            <div class="form-group" id="cvv2_row">
+            <label for="cvv2" class="control-label">
+                {{_ 'CVV2/CVC2 code' }}
+                <i class="icon icon-help" title="{{_ 'info_cvv' }}" >?</i></label>
+                <div class="form-field">
+                    <input type="text" value="" placeholder="{{_ 'CVV2' }}" can-control="ui.cvv"
+                    data-valid="required;cvv2" data-infobox="{{_ 'info_cvv' }}" class="form-control next-input silver"
+                id="cvv2" name="cvv2" maxlength="4">
+                <div class="error-wrapper error-valid-cvv2 error-valid-maskcode"><div class="error"></div></div>
+            </div>
+            </div>
+            <div class="sslprotected"><img src="/static_common/v1/img/ssl-secure.png" width="15" height="18" align="top">
+            {{_ 'Protected by SSL' }}
+            </div>
+            </div>
+    </div>
+
+    {{#if checkout.checkout_email_required }}
+    <div class="form-group" id="email_row">
+        <label for="email" id="_email" class="control-label">{{_ 'Email address' }}:</label>
+        <div class="form-field">
+            <input type="hidden" name="cardholder" value="test">
+            {{#if pay.params.sender_email}}
+                 <input type="text" value="{{pay.params.sender_email}}" data-valid="required;email"
+                 class="form-control" name="email" id="email" placeholder="{{_ 'Email address' }}">
+            {{else}}
+                 <input type="text" value="{{order.order_data.sender_email}}" data-valid="required;email"
+                 class="form-control" name="email" id="email" placeholder="{{_ 'Email address' }}">
+            {{/if}}
+            <div class="error-wrapper error-valid-email"><div class="error"></div></div>
+        </div>
+    </div>
+    {{/if}}
+
+
+    {{#if checkout.checkout_phone_required }}
+    <div class="form-group" id="email_row">
+        <label for="phone" id="phone" class="control-label">{{_ 'Phone' }}:</label>
+        <div class="form-field">
+            {{#if pay.params.sender_phone}}
+                 <input type="text" value="{{pay.params.sender_phone}}" data-valid="required;phone"
+                 class="form-control" name="phone" id="phone" placeholder="{{_ 'Phone' }}">
+            {{else}}
+                 <input type="text" value="{{order.order_data.sender_phone}}" data-valid="required;phone"
+                 class="form-control" name="phone" id="phone" placeholder="{{_ 'Phone' }}">
+            {{/if}}
+            <div class="error-wrapper error-valid-phone"><div class="error"></div></div>
+        </div>
+    </div>
+    {{/if}}
+
+    {{#unless order.showVerify }}
+        {{#each checkout.customerFields}}
+        <div class="form-group form-group-customer-data">
+        <label for="phone" id="{{name}}" class="control-label">{{_ name }}:</label>
+        <div class="form-field">
+            {{#if dictionary }}
+            <select class="form-control" name="customer_data[{{name}}]" id="{{name}}" placeholder="{{_ placeholder }}" data-valid="{{ valid }}">
+            {{#each getDictionary(dictionary) }}
+                <option value="{{code}}">{{name}}</option>
+            {{/each}}
+            </select>
+            {{else}}
+            <input type="text" value="" data-valid="{{ valid }}"
+             class="form-control" name="customer_data[{{name}}]" id="{{name}}" placeholder="{{_ placeholder }}">
+            {{/if}}
+            <div class="error-wrapper error-valid-customer_data_{{name}}_"><div class="error"></div></div>
+        </div>
+        </div>
+        {{/each}}
+
+    {{/unless}}
+
+    {{#if checkout.order.subscription }}
+        {{>checkout_recurring}}
+    {{else}}
+        {{#if pay.params.subscription }}
+            {{>checkout_recurring}}
+        {{/if}}
+    {{/if}}
+    {{#if checkout.merchant.offerta_url }}
+        <div class="form-group form-group-offer">
+           <label>
+              <input type="checkbox" data-name="offer" data-valid="required" can-control="ui.checkbox">
+              {{_ 'I agree with' }} <a href="{{ offerurl checkout.merchant.offerta_url }}" target="_blank">{{_ 'Public offer' }}</a>
+           </label>
+           <div class="error-wrapper error-valid-offer"><div class="error"></div></div>
+        </div>
+    {{/if}}
+    {{#if order.showVerify }}
+    <div class="form-group" id="verification_row">
+        <input type="hidden" name="currency" value="{{checkout.order.currency}}">
+        <label for="verification_code" class="control-label">
+            {{#if order.isVerificationAmount }}
+                {{_ 'Enter the verification amount' }}
+            {{ else }}
+                {{_ 'Please enter verification code' }}
+            {{/if}}
+        </label>
+        <div class="form-field">
+            {{#if order.isVerificationAmount }}
+            <input type="text" data-valid="required;pattern:^\d{1,7}([,\.]\d{1,2})?$;numrange:0,9999999.99" class="form-control" name="verification_code"
+            id="verification_code" placeholder="{{_ 'verification amount' }}"
+            data-infobox="{{_ 'info_verification_amount' }}">
+            {{ else }}
+            <input type="text" data-valid="required;exact_length:4" maxlength="4" class="form-control" name="verification_code"
+            id="verification_code" placeholder="{{_ 'verification code' }}"
+            data-infobox="{{_ 'info_verification' }}">
+            {{/if}}
+            <div class="error-wrapper error-valid-verification_code"><div class="error"></div></div>
+        </div>
+    </div>
+    {{/if}}
+    </div>
+    {{#if order.showVerify }}
+    <div class="btn-row" id="verification_buttons">
+        <div class="container">
+            <div class="row w100">
+                <div class="col w50 text-left">
+                <button class="btn btn-block btn-lime" id="verification_confirm">
+                    <span>{{_ 'Confirm' }}</span>
+                </button>
+                </div>
+                <div class="col w50 text-right">
+                <button class="btn btn-block btn-yellow" id="verification_cancel">
+                    <span>{{_ 'Cancel' }}</span>
+                </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{else}}
+    <div class="btn-row" id="submit_button_row">
+        <div class="container">
+            <button type="submit" class="btn btn-block btn-lime" id="submit_button">
+                  <i class="icon icon-check"></i>
+                  <span>{{_ 'Checkout' }}</span>
+                  {{#unless order.isVerificationAmount }}
+                  <span class="amount">
+                        {{#if pay.amount}}
+                            {{pay.amount}}
+                        {{else}}
+                            {{#if checkout.order.actual_amount}}
+                                {{ checkout.order.actual_amount }}
+                            {{/if}}
+                        {{/if}}
+                  </span>
+                  <span class="currency">
+                        {{#if pay.currency}}
+                            {{#if pay.amount}}
+                                {{_ pay.currency}}
+                            {{/if}}
+                        {{else}}
+                            {{#if checkout.order.currency}}
+                                {{_ checkout.order.currency}}
+                            {{/if}}
+                        {{/if}}
+                  </span>
+                  {{/unless}}
+            </button>
+        </div>
+    </div>
+    {{/if}}
+    </form>
+</script>
+
+<script id="checkout_recurring" type="text/stache">
+    <div class="form-group form-group-recurring">
+        <label>
+            <input type="checkbox" {{#if pay.isRecurringChecked }} checked="checked" {{/if}}
+            can-control="ui.checkbox,ui.toggle.recurring"> {{_ 'Regular base payment' }}
+        </label>
+    </div>
+    <div class="form-group-grid {{#if pay.isRecurringChecked }} {{else}}hide{{/if}}" id="recurring_form">
+            <input type="hidden" value="{{ pay.recurringEndTime }}" name="recurring_data[end_time]">
+            <div class="form-group">
+                    <label class="control-label" for="recurring_every">{{_ 'Сharged with the frequency' }}:</label>
+                    {{#if pay.recurring.custom_period }}
+                    <div class="form-field">
+                       <input type="tel" value="{{pay.recurring.every}}" can-value="pay.recurring.every" {{#if pay.recurring_readonly }} readonly="true" {{/if}} id="recurring_every" data-valid="required" class="form-control number" name="recurring_data[every]">
+                       {{#if pay.recurring_readonly }}
+                            <input type="hidden" value="{{pay.recurring.period}}" data-valid="required" name="recurring_data[period]">
+                            <input type="text" value="{{_ pay.recurring.period}}" readonly="true" id="recurring_period" class="form-control number">
+                       {{else}}
+                       <select data-valid="required" can-value="pay.recurring.period" can-select-value="{{pay.recurring.period}}" class="form-control" name="recurring_data[period]">
+                            <option value="" selected="selected" disabled="disabled">---</option>
+                            <option value="day">{{_ 'day' }}</option>
+                            <option value="week">{{_ 'week' }}</option>
+                            <option value="month">{{_ 'month' }}</option>
+                       </select>
+                       {{/if}}
+                    </div>
+                    {{else}}
+                    <div class="form-field" can-control="ui.recurring.period">
+                       <input type="hidden" name="recurring_data[every]" value="{{ pay.recurring.every }}">
+                       <input type="hidden" name="recurring_data[period]" value="{{ pay.recurring.period }}">
+                       <select class="form-control" id="recurring_every" can-select-value="{{ pay.recurringDefaultPeriod }}">
+                            <option value="1,day">{{_ 'day' }}</option>
+                            <option value="1,week">{{_ 'week' }}</option>
+                            <option value="2,week">{{_ '2 weeks' }}</option>
+                            <option value="1,month">{{_ 'month' }}</option>
+                            <option value="2,month">{{_ '2 months' }} </option>
+                            <option value="3,month">{{_ 'quarter' }}</option>
+                       </select>
+                    </div>
+                    {{/if}}
+            </div>
+            <div class="divider"></div>
+            <div class="form-group">
+                <label class="control-label" for="recurring_amount">{{_ 'amount' }}:</label>
+                <div class="form-field">
+                   <input type="tel" value="{{pay.recurring.amount}}" {{#if pay.recurring_readonly }} readonly="true" {{/if}} id="recurring_amount" placeholder="{{_ 'amount' }}" data-valid="required;amount"
+                   can-control="ui.input.amount" class="form-control amount" name="recurring_data[amount]">
+                   {{#if pay.currency }}
+                        <span class="currency {{lowercase pay.currency }}">
+                            {{_ pay.currency }}
+                        </span>
+                   {{else}}
+                        <span class="currency {{lowercase checkout.order.currency }}">
+                            {{_ checkout.order.currency }}
+                        </span>
+                    {{/if}}
+                   <div class="error-wrapper error-valid-recurring_data_amount_"><div class="error"></div></div>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="form-group">
+                <label class="control-label" for="recurring_start_time">{{_ 'starting with the date' }}:</label>
+                <div class="form-field">
+                   <input type="date" value="{{ pay.recurringStartTime }}" {{#if pay.recurring_readonly }} readonly="true" {{/if}} id="recurring_start_time" data-valid="required"
+                   class="form-control date" name="recurring_data[start_time]" placeholder="yyyy-mm-dd">
+                   <div class="error-wrapper error-valid-recurring_data_start_time_"><div class="error"></div></div>
+                </div>
+            </div>
+    </div>
+</script>
+
+<script id="checkout_pay" type="text/stache">
+    <form can-control="ui.form.validate,ui.form.button" id="{{pay.formID}}">
+        {{#each pay.params}}
+        <input type="hidden" name="{{@key}}" value="{{.}}">
+        {{/each}}
+        <input type="hidden" name="merchant_id" value="{{pay.merchant_id}}">
+        <div class="row row-amount">
+            <label class="col col-label" for="order-amount">{{_ 'Order amount' }}:</label>
+            <div class="col col-value order-amount">
+                <input type="hidden" name="currency" value="{{pay.currency}}">
+                {{#if pay.amount_readonly }}
+                    <div class="txt-amount">
+                        <big class="order-amount-total">{{pay.amount}}</big>
+                        <sup class="order-currency">{{_ pay.currency}}</sup>
+                        <input type="hidden" name="amount"
+                        data-fee="{{checkout.client_fee}}"
+                        can-control="ui.pay.client_fee" value="{{pay.amount}}">
+                    </div>
+                {{else}}
+                    <input class="form-control" can-control="ui.pay.client_fee" id="order-amount"
+                        placeholder="{{_ 'Order amount' }}"
+                        data-fee="{{checkout.client_fee}}"
+                        data-valid="required;amount"
+                        can-value="pay.amount" name="amount" value="{{pay.amount}}">
+                    <span class="currency">{{_ pay.currency}}</span>
+                    <div class="error-wrapper error-valid-amount"><div class="error"></div></div>
+                {{/if}}
+            </div>
+        </div>
+        {{#if checkout.client_fee }}
+        <div class="row row-extra">
+            <div class="col col-label">{{_ 'Commission' }}</div>
+            <div class="col col-value"><div class="txt-amount">{{checkout.clientFeeFormat}}</div></div>
+        </div>
+        <div class="row row-extra">
+            <div class="col col-label">{{_ 'Total amount' }}</div>
+            <div class="order-amount-details">
+                <div class="txt-amount">
+                    <big class="order-amount-actual">0</big>
+                    <sup class="order-currency">{{_ pay.currency }}</sup>
+                </div>
+            </div>
+        </div>
+        {{/if}}
+    {{#pay.fields}}
+        {{#if hidden}}
+                <input type="hidden" name="{{name}}" value="{{value}}">
+            {{else}}
+            <div class="row row-extra">
+                <label class="col col-label" for="{{name}}">{{label}}:</label>
+                <div class="col col-value">
+                    {{#if readonly}}
+                        <div class="txt-safewidth txt-forcewrap">{{value}}</div>
+                        <input type="hidden" name="{{name}}" value="{{value}}">
+                    {{else}}
+                        <input class="form-control" data-valid="{{valid}}" id="{{name}}"
+                        can-value="value" placeholder="{{placeholder}}" name="{{name}}" value="{{value}}">
+                        <div class="error-wrapper error-valid-{{name}}"><div class="error"></div></div>
+                    {{/if}}
+                </div>
+            </div>
+            {{/if}}
+    {{/pay.fields}}
+    </form>
+
+</script>
+
+<script id="checkout_cash" type="text/stache">
+    <div class="container page-form">
+        <form class="form-centered form-cash" can-control="ui.form.validate,ui.form.liqpay_cash">
+            {{>checkout_infobox}}
+            <div class="form-group">
+                <label class="control-label">{{_ 'Phone' }}</label>
+                <div class="form-field">
+                    <input type="text" data-valid="required;phone" name="sender_phone" class="form-control">
+                    <div class="error-wrapper error-valid-sender_phone"><div class="error"></div></div>
+                </div>
+            </div>
+            <div class="btn-row">
+               <button class="btn btn-block btn-lime">{{_ 'Checkout'}}</button>
+            </div>
+        </form>
+    </div>
+</script>
+
+<script id="checkout_loans" type="text/stache">
+    <form class="form-credit" can-control="ui.form.validate,ui.form.loans" {{data 'checkout' checkout}}>
+        <div class="container product-info">
+               <input type="hidden" name="payment_system" value="loans">
+               {{#if checkout.credit_info.image}}
+               <div class="product-info-image">
+                    <img src="{{checkout.credit_info.image}}">
+               </div>
+               {{/if}}
+               <div class="product-info-wrapper">
+                     {{#if checkout.credit_info.title}}
+                     <h3 class="product-info-title">
+                        <a target="_blank" href="{{checkout.credit_info.url}}">{{checkout.credit_info.title}}</a>
+                     </h3>
+                     {{/if}}
+                     <div class="product-info-row">
+                        <div class="product-info-col">
+                            <div class="sm">{{_ 'Price' }}</div>
+                            <div class="lg">
+                            {{checkout.order.actual_amount}}
+                            <span class="sm">{{_ checkout.order.currency }}</span>
+                            </div>
+                        </div>
+                        {{#if checkout.credit_info.name}}
+                        <div class="product-info-col">
+                            <div class="sm">{{_ 'Shop' }}</div>
+                            <div class="md">
+                                <a target="_blank" class="link" href="{{checkout.credit_info.url}}">
+                                    {{checkout.credit_info.name}}
+                                </a>
+                            </div>
+                        </div>
+                        {{/if}}
+                     </div>
+                     {{#if checkout.credit_info.title}}
+                     <div class="product-info-descr">
+                        {{checkout.credit_info.descr}}
+                     </div>
+                     {{/if}}
+                     <div class="product-info-response hide" data-url="{{checkout.action}}"
+                        data-action="{{checkout.action}}">
+                            <div class="state success">
+                                 <div class="title">{{_ 'The loan is approved!' }}</div>
+                                 <div>
+                                    {{_ 'To finish you need enter the data of your credit card and pay the first installment payment in the amount of' }}
+                                    {{checkout.creditFirstAmount}} {{_ checkout.order.currency }}.
+                                 </div>
+                            </div>
+                            <div class="state declined">
+                                <div class="title">
+                                    {{_ 'The loan was declined' }}
+                                </div>
+                                <div>
+                                    {{_ 'Unfortunately we can not give you a loan' }}.
+                                </div>
+                            </div>
+                            <div class="state pending">
+                                <div class="title">
+                                    {{_ 'Processing of the application' }}
+                                </div>
+                                <div>
+                                    {{_ 'Your application for a loan in the processing' }}.
+                                    {{_ 'We will call you back within 15 minutes on the number' }}
+                                </div>
+                            </div>
+                     </div>
+                     <div class="product-info-parts">
+                        <label>{{_ 'The number of payments' }}</label>
+                        <input type="hidden" name="scoring[product]" can-value="checkout.credit_info.title">
+                        <input type="hidden" name="scoring[amount]" can-value="checkout.credit_info.current_amount">
+                        <input type="hidden" name="scoring[currency]" can-value="checkout.order.currency">
+                        <select class="form-control" can-value="checkout.credit_info.current" name="scoring[parts]">
+                            {{#each checkout.credit_info.parts}}
+                                <option value="{{@key}}">{{@key}}</option>
+                            {{/each}}
+                        </select>
+                        <span>=</span>
+                        <span>{{checkout.creditFirstAmount}}</span>
+                        <span>{{checkout.credit_info.currency}}</span>
+                        <span>/</span>
+                        <span>{{_ 'month' }}.</span>
+                     </div>
+                     <div class="product-info-form">
+                        <div class="form-heading">
+                            {{_ 'Personal data' }}
+                        </div>
+                        <div class="form-row">
+                            <label class="control-label">{{_ 'Resident' }}</label>
+                            <div class="form-field">
+                                <div class="ui-radio-wrapper">
+                                <input type="radio" class="white" checked id="resident_y" value="yes" can-control="ui.radio" name="scoring[resident]">
+                                <label for="resident_y">{{_ 'Yes' }}</label>
+                                <input type="radio" class="white" id="resident_n" value="no" can-control="ui.radio" name="scoring[resident]">
+                                <label for="resident_n">{{_ 'No' }}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <label class="control-label">{{_ 'Name' }}</label>
+                            <div class="form-field">
+                                <input type="text" data-valid="required" name="scoring[first_name]" class="form-control">
+                                <div class="error-wrapper error-valid-scoring_first_name_"><div class="error"></div></div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <label class="control-label">{{_ 'Last Name' }}</label>
+                            <div class="form-field">
+                                <input type="text" data-valid="required" name="scoring[last_name]" class="form-control">
+                                <div class="error-wrapper error-valid-scoring_last_name_"><div class="error"></div></div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <label class="control-label">{{_ 'Middle Name' }}</label>
+                            <div class="form-field">
+                                <input type="text" data-valid="required" name="scoring[middle_name]" class="form-control">
+                                <div class="error-wrapper error-valid-scoring_middle_name_"><div class="error"></div></div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <label class="control-label">{{_ 'Date of birth' }}</label>
+                            <div class="form-field">
+                                <input type="date" data-valid="required" name="scoring[birth_date]" class="form-control">
+                                <div class="error-wrapper error-valid-scoring_birth_date_"><div class="error"></div></div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <label class="control-label">{{_ 'Sex' }}</label>
+                            <div class="form-field">
+                                <div class="ui-radio-wrapper">
+                                <input type="radio" class="white" checked id="gender_m" value="male" can-control="ui.radio" name="scoring[gender]">
+                                <label for="gender_m">{{_ 'Male' }}</label>
+                                <input type="radio" class="white" id="gender_f" value="female" can-control="ui.radio" name="scoring[gender]">
+                                <label for="gender_f">{{_ 'Female' }}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <label class="control-label">{{_ 'Citizenship' }}</label>
+                            <div class="form-field">
+                                <select class="form-control" name="scoring[nationality]">
+                                    <option value="UA">Украина</option>
+                                </select>
+                                <div class="error-wrapper error-valid-scoring_nationality_"><div class="error"></div></div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <label class="control-label">{{_ 'ITN' }}</label>
+                            <div class="form-field">
+                                <input type="text" data-valid="required" name="scoring[itn]" class="form-control">
+                                <div class="error-wrapper error-valid-scoring_itn_"><div class="error"></div></div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <label class="control-label">{{_ 'Phone' }}</label>
+                            <div class="form-field">
+                                <input type="text" data-valid="required" name="scoring[phone]" class="form-control">
+                                <div class="error-wrapper error-valid-scoring_phone_"><div class="error"></div></div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <label class="control-label">{{_ 'Social status' }}</label>
+                            <div class="form-field">
+                                <select class="form-control" name="scoring[social_status]">
+                                    <option value="student">Студент</option>
+                                </select>
+                                <div class="error-wrapper error-valid-scoring_social_status_"><div class="error"></div></div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <label class="control-label">{{_ 'Type of employment' }}</label>
+                            <div class="form-field">
+                                <select class="form-control" name="scoring[employment_type]">
+                                    <option value="student">Собственник бизнеса / СПД</option>
+                                </select>
+                                <div class="error-wrapper error-valid-scoring_employment_type_"><div class="error"></div></div>
+                            </div>
+                        </div>
+                        <div class="form-heading">
+                            {{_ 'Passport data' }}
+                        </div>
+                        <div class="form-row">
+                            <label class="control-label">{{_ 'Series'}}</label>
+                            <div class="form-field">
+                                <input type="text" data-valid="required" name="scoring[passport_series]" class="form-control">
+                                <div class="error-wrapper error-valid-scoring_passport_series_"><div class="error"></div></div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <label class="control-label">{{_ 'Number'}}</label>
+                            <div class="form-field">
+                                <input type="text" data-valid="required" name="scoring[passport_number]" class="form-control">
+                                <div class="error-wrapper error-valid-scoring_passport_number_"><div class="error"></div></div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <label class="control-label">{{_ 'Date of issue'}}</label>
+                            <div class="form-field">
+                                <input type="date" data-valid="required" name="scoring[passport_date]" class="form-control">
+                                <div class="error-wrapper error-valid-scoring_passport_date_"><div class="error"></div></div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <label>
+                                <input type="checkbox" data-name="offer" data-valid="required" can-control="ui.checkbox">
+                                {{_ 'Agree with'}}
+                                <a class="link" href="{{ offerurl checkout.merchant.offerta_url }}">{{_ 'conditions'}}</a>
+                            </label>
+                            <div class="error-wrapper error-valid-offer"><div class="error"></div></div>
+                        </div>
+                        <div class="btn-row">
+                            <button class="btn btn-block btn-lime">{{_ 'Gave me a loan'}}</button>
+                         </div>
+                     </div>
+               </div>
+        </div>
+    </form>
+</script>
+
+<script id="checkout_credit" type="text/stache">
+    <form class="form-credit" can-control="ui.form.validate,ui.form.creditpb">
+        <div class="container">
+            <div class="form-group">
+                {{_ 'Order cost' }}:
+                <big>{{ checkout.order.actual_amount }}</big>
+                <sup>{{_ checkout.order.currency }}</sup>
+            </div>
+            {{#each payment_systems}}
+                <input type="hidden" name="payment_system" value="{{ @key }}">
+                <div class="form-group">
+                    {{#each checkout.pp_data.types}}
+                        <div class="ui-radio-wrapper">
+                        <input type="radio" class="white" {{#is . checkout.pp_data.default_type }}checked{{/is}}
+                        id="{{.}}" value="{{.}}" can-value="checkout.pp_data.default_type" can-control="ui.radio" name="pp_type">
+                        <label for="{{.}}">{{_ . }}</label>
+                        </div>
+                    {{/each}}
+                </div>
+                <div class="form-group text-center">
+                    {{_ 'Amount of parts' }} :  {{ checkout.pp_data.part }}
+                </div>
+                <div class="form-group">
+                    <input type="text" min="{{ checkout.creditMinPart }}" max="{{ checkout.creditMaxPart }}"
+                    value="{{ checkout.pp_data.default_part }}" name="pp_parts_count"
+                    can-value="checkout.pp_data.part" can-control="ui.rangeslider" />
+                    <div class="range-min-part">{{ checkout.creditMinPart }}</div>
+                    <div class="range-max-part">{{ checkout.creditMaxPart }}</div>
+                </div>
+                <div class="form-group">
+                    <div class="credit-result">
+                        <div class="small">
+                            {{_ 'The number of payments' }} : <strong>{{ checkout.pp_data.calc.payCount }}</strong>
+                        </div>
+                        <div class="descr">
+                            {{ checkout.creditMonthAmount }} {{_ checkout.order.currency }} / {{_ 'month' }}.
+                        </div>
+                        <div class="small italic">
+                            <em>{{_ 'Monthly fee' }} - <strong>{{ checkout.creditMonthFee }}%</strong></em>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-row">
+                    <button type="submit" class="btn btn-block btn-lime">
+                        <span>{{_ 'Checkout' }}</span>
+                    </button>
+                </div>
+            {{/each}}
+        </div>
+    </form>
+
+</script>
+
+<script id="checkout_error" type="text/stache">
+{{css '/static_common/v1/css/error.css' }}
+{{body_class "checkout-error"}}
+<div class="container">
+<div class="content">
+<h1>{{_ 'Error' }}</h1>
+<p>{{checkout.error_code}} : {{checkout.error_message}}</p>
+</div>
+</div>
+</script>
+
+</body>
+</html>
+
+
+
+

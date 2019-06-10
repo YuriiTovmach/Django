@@ -1,0 +1,14 @@
+
+        .bazz-widget {
+            bottom: 68px;
+			right: 75px;
+			left: auto !important;
+        }
+
+        .bazz-widget, .bazz-widget-close, .bazz-widget-form-submit, .bazz-widget-button, .bazz-widget-name-close, .bazz-widget-inner-circle {
+            background-color: #00aff2;
+        }
+
+        .bazz-widget-inner-border, .bazz-widget-form-submit, .bazz-widget-name-close {
+            border-color: #00aff2;
+        }

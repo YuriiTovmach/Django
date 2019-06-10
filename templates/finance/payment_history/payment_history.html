@@ -1,0 +1,1427 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+    <link rel="icon" href="https://chatoptimizer.com/wp-content/uploads/2014/11/favicon1.png" type="image/x-icon"/>
+    <link rel="icon" href="/media/images/favicon.png" sizes="32x32">
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/><script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,n,t){function r(t){if(!n[t]){var o=n[t]={exports:{}};e[t][0].call(o.exports,function(n){var o=e[t][1][n];return r(o||n)},o,o.exports)}return n[t].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<t.length;o++)r(t[o]);return r}({1:[function(e,n,t){function r(){}function o(e,n,t){return function(){return i(e,[c.now()].concat(u(arguments)),n?null:this,t),n?void 0:this}}var i=e("handle"),a=e(3),u=e(4),f=e("ee").get("tracer"),c=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,n){s[n]=o(d+n,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),n.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,n){var t={},r=this,o="function"==typeof n;return i(l+"tracer",[c.now(),e,t],r),function(){if(f.emit((o?"":"no-")+"fn-start",[c.now(),r,o],t),o)try{return n.apply(this,arguments)}catch(e){throw f.emit("fn-err",[arguments,this,e],t),e}finally{f.emit("fn-end",[c.now()],t)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,n){m[n]=o(l+n)}),newrelic.noticeError=function(e,n){"string"==typeof e&&(e=new Error(e)),i("err",[e,c.now(),!1,n])}},{}],2:[function(e,n,t){function r(e,n){if(!o)return!1;if(e!==o)return!1;if(!n)return!0;if(!i)return!1;for(var t=i.split("."),r=n.split("."),a=0;a<r.length;a++)if(r[a]!==t[a])return!1;return!0}var o=null,i=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var u=navigator.userAgent,f=u.match(a);f&&u.indexOf("Chrome")===-1&&u.indexOf("Chromium")===-1&&(o="Safari",i=f[1])}n.exports={agent:o,version:i,match:r}},{}],3:[function(e,n,t){function r(e,n){var t=[],r="",i=0;for(r in e)o.call(e,r)&&(t[i]=n(r,e[r]),i+=1);return t}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],4:[function(e,n,t){function r(e,n,t){n||(n=0),"undefined"==typeof t&&(t=e?e.length:0);for(var r=-1,o=t-n||0,i=Array(o<0?0:o);++r<o;)i[r]=e[n+r];return i}n.exports=r},{}],5:[function(e,n,t){n.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,n,t){function r(){}function o(e){function n(e){return e&&e instanceof r?e:e?f(e,u,i):i()}function t(t,r,o,i){if(!d.aborted||i){e&&e(t,r,o);for(var a=n(o),u=v(t),f=u.length,c=0;c<f;c++)u[c].apply(a,r);var p=s[y[t]];return p&&p.push([b,t,r,a]),a}}function l(e,n){h[e]=v(e).concat(n)}function m(e,n){var t=h[e];if(t)for(var r=0;r<t.length;r++)t[r]===n&&t.splice(r,1)}function v(e){return h[e]||[]}function g(e){return p[e]=p[e]||o(t)}function w(e,n){c(e,function(e,t){n=n||"feature",y[t]=n,n in s||(s[n]=[])})}var h={},y={},b={on:l,addEventListener:l,removeEventListener:m,emit:t,get:g,listeners:v,context:n,buffer:w,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",f=e("gos"),c=e(3),s={},p={},d=n.exports=o();d.backlog=s},{}],gos:[function(e,n,t){function r(e,n,t){if(o.call(e,n))return e[n];var r=t();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,n,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[n]=r,r}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],handle:[function(e,n,t){function r(e,n,t,r){o.buffer([e],r),o.emit(e,n,t)}var o=e("ee").get("handle");n.exports=r,r.ee=o},{}],id:[function(e,n,t){function r(e){var n=typeof e;return!e||"object"!==n&&"function"!==n?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");n.exports=r},{}],loader:[function(e,n,t){function r(){if(!E++){var e=x.info=NREUM.info,n=l.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&n))return s.abort();c(y,function(n,t){e[n]||(e[n]=t)}),f("mark",["onload",a()+x.offset],null,"api");var t=l.createElement("script");t.src="https://"+e.agent,n.parentNode.insertBefore(t,n)}}function o(){"complete"===l.readyState&&i()}function i(){f("mark",["domContent",a()+x.offset],null,"api")}function a(){return O.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-x.offset}var u=(new Date).getTime(),f=e("handle"),c=e(3),s=e("ee"),p=e(2),d=window,l=d.document,m="addEventListener",v="attachEvent",g=d.XMLHttpRequest,w=g&&g.prototype;NREUM.o={ST:setTimeout,SI:d.setImmediate,CT:clearTimeout,XHR:g,REQ:d.Request,EV:d.Event,PR:d.Promise,MO:d.MutationObserver};var h=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1123.min.js"},b=g&&w&&w[m]&&!/CriOS/.test(navigator.userAgent),x=n.exports={offset:u,now:a,origin:h,features:{},xhrWrappable:b,userAgent:p};e(1),l[m]?(l[m]("DOMContentLoaded",i,!1),d[m]("load",r,!1)):(l[v]("onreadystatechange",o),d[v]("onload",r)),f("mark",["firstbyte",u],null,"api");var E=0,O=e(5)},{}]},{},["loader"]);</script>
+    <meta http-equiv="content-language" content="ru"/>
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="/media/css/bootstrap.min.css"/>
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="/media/css/styles.css"/>
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="/media/css/jquery-te-1.4.0.css"/>
+    <link rel="stylesheet" type="text/css" href="/media/css/bootstrap-submenu.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/media/css/chosen.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/media/css/bootstrap-select.min.css"/>
+            <script type="text/javascript" src="/media/js/jquery-1.11.2.min.js"></script>            <script type="text/javascript" src="/media/js/bootstrap.min.js"></script>            <script type="text/javascript" src="/media/js/bootstrap-submenu.min.js"></script>            <script type="text/javascript" src="/media/js/bootstrap-datetimepicker.min.js"></script>            <script type="text/javascript" src="/media/js/jquery-te-1.4.0.min.js"></script>            <script type="text/javascript" src="/media/js/chosen.jquery.min.js"></script>            <script type="text/javascript" src="/media/js/telegramAuth/login.js?v=1557816200"></script>            <script type="text/javascript" src="/media/js/moment.js"></script>            <script type="text/javascript" src="/media/js/bootstrap-select.js"></script>            <script type="text/javascript" src="/media/js/toastr.min.js"></script>            <script type="text/javascript" src="/media/js/notifications.js?v=1557816200"></script>            <script type="text/javascript" src="/media/js/flipclock.js"></script>                <link type="text/css" href="/media/css/flags16X11.css" rel="stylesheet" />            <link type="text/css" href="/media/css/font-awesome.min.css" rel="stylesheet" />            <link type="text/css" href="/media/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />            <link type="text/css" href="/media/css/bootstrap-select.min.css" rel="stylesheet" />            <link type="text/css" href="/media/css/toastr.min.css" rel="stylesheet" />            <link type="text/css" href="/media/css/notifications.css?v=1557816200" rel="stylesheet" />            <link type="text/css" href="/media/css/flipclock.css" rel="stylesheet" />        <title>ChatOS Личный кабинет</title>
+    <link href="//account.chatoptimizer.com/telegram-site-helper/telegram-site-helper.css" rel="stylesheet">
+    <script type="text/javascript" src="//account.chatoptimizer.com/telegram-site-helper/telegram-site-helper.js"></script>
+</head>
+<body>
+<div id="wrap">
+       <!-- Static navbar -->
+	<nav class="navbar navbar-default navbar-static-top" role="navigation">
+	  <div class="container">
+		<div class="navbar-header">
+		  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		  </button>
+			<a class="navbar-brand" href="https://chatoptimizer.com">ChatOS</a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+												<ul class="nav navbar-nav">
+													<li class="">
+								<a  data-toggle="dropdown" href="#">Доступ<span class="caret"></span></a>
+								<ul class="dropdown-menu" role="menu">
+																			<li><a href="/customer/administratorsList">Администраторы</a></li>
+																												<li><a href="/customer/operatorsList">Операторы</a></li>
+																	</ul>
+							</li>
+																			<li class="">
+								<a data-toggle="dropdown" href="#">Аккаунты девушек<span class="caret"></span></a>
+								<ul class="dropdown-menu" role="menu">
+																			<li><a href="/customer/accountList">Список Ваших аккаунтов</a></li>
+																												<li><a href="/customer/accountAdd">Добавить аккаунт</a></li>
+																												<li><a href="/customer/blackList">Глобальный черный список</a></li>
+																												<li><a href="/customer/lettersList">Умные письма</a></li>
+
+                                    <li class="dropdown dropdown-submenu ">
+                                        <a tabindex="0" data-toggle="dropdown">Аналитика</a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="/analytics/victoriabrides" tabindex="0">Prime.date</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                                                            <li><a href="/customer/blockListList">Блок лист</a></li>
+                                    																																								<li class="dropdown dropdown-submenu ">
+												<a tabindex="0" data-toggle="dropdown">Белый список мужчин</a>
+												<ul class="dropdown-menu">
+																											<li>
+															<a href="/customer/whiteListList/1" tabindex="0">Svadba.com</a>
+														</li>
+																																								<li>
+															<a href="/customer/whiteListList/15" tabindex="0">Prime.date</a>
+														</li>
+																									</ul>
+											</li>
+																											</ul>
+							</li>
+																			<li class="active">
+								<a  data-toggle="dropdown" href="#">Финансы<span class="caret"></span></a>
+								<ul class="dropdown-menu" role="menu">
+																			<li><a href="/customer/topup">Пополнить счет</a></li>
+																					<li><a href="/customer/topupHistory">История платежей</a></li>
+																							<li><a href="/customer/autotopupSettings">Автоматические платежи</a></li>
+																																																	<li><a href="/customer/financeReport">Финансовый отчет</a></li>
+																												<li class="dropdown-submenu">
+											<a tabindex="0" data-toggle="dropdown">Финансовые достижения</a>
+											<ul class="dropdown-menu">
+																									<li>
+														<a href="/customer/svadbaProfitReport" tabindex="0">Svadba.com</a>
+													</li>
+																																					<li>
+														<a href="/customer/svadbaGraphics" tabindex="0">Svadba.com - графики</a>
+													</li>
+																																																	<li>
+														<a href="/customer/charmdateProfitReport" tabindex="0">Charmdate.com</a>
+													</li>
+																							</ul>
+										</li>
+																												<li><a href="/customer/referSystem">Реферальная система</a></li>
+																		<!--<li><a href="/customer/financeReport">Финансовый отчет</a></li>-->
+								</ul>
+							</li>
+
+													<li class="dropdown ">
+								<a data-toggle="dropdown" tabindex="0" href="#">Настройки<span class="caret"></span></a>
+								<ul class="dropdown-menu">
+																			<li><a href="/customer/cloudOptions">Синхронизация</a></li>
+																												<li class="dropdown-submenu">
+											<a tabindex="0" data-toggle="dropdown">Svadba.com</a>
+											<ul class="dropdown-menu">
+												<li class="disabled">
+													<a href="/customer/svadbaAccountProfit" tabindex="0">Прибыль аккаунтов</a>
+												</li>
+											</ul>
+										</li>
+																												<li class="dropdown-submenu">
+											<a tabindex="0" data-toggle="dropdown">Natashaclub.com</a>
+											<ul class="dropdown-menu">
+												<li class="disabled">
+													<a href="/customer/natashaclubAccountProfit" tabindex="0">Прибыль аккаунтов</a>
+												</li>
+											</ul>
+										</li>
+																												<li class="dropdown-submenu">
+											<a tabindex="0" data-toggle="dropdown">Charmdate.com</a>
+											<ul class="dropdown-menu">
+												<li class="disabled">
+													<a href="/customer/charmdateAccountProfit" tabindex="0">Прибыль аккаунтов</a>
+												</li>
+											</ul>
+										</li>
+																												<li>
+                                            <a tabindex="0" id="newMenuButton" href="#" data-toggle="modal" data-target="#notificationsModal">Новости <span class="badge"></span></a>
+                                        </li>
+                                                                                    <li>
+
+                                                <a id="checkAuth" href="#" tabindex="0" connect="true" class="" telegram="LmUuzq"
+                                                   login="http://telegram.me/ChatOSBot?start=connect_LmUuzq">Подключить Telegram аккаунт <i class="fa fa-paper-plane-o" aria-hidden="true"></i></a>
+                                            </li>
+                                                                                                                            <li>
+                                                <a id="facebookConnect" href="#" tabindex="0" connect="true">Подключить Facebook аккаунт <i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                            </li>
+                                                                                                                            <li>
+                                                <a id="googleConnect" href="#" tabindex="0" connect="true">Подключить Google аккаунт <i class="fa fa-google" aria-hidden="true"></i></a>
+                                            </li>
+                                        																	</ul>
+							</li>
+
+											</ul>
+																	<ul class="nav navbar-nav navbar-right">
+						<li>
+																																										<a class="pull-left" style="max-width: 200px" href="/customer/profile">Приветствуем, Elina</a>
+						</li>
+													<li>
+								<a style="padding: 15px 4px 0px">
+																			Ваш баланс: 7,7 $
+																		<br>
+																		<small>Курс 1$ = 26,1 грн</small>
+									<a href="?lang=en" style="padding: 0px;"><span class="flag flag-gb pull-right"></span></a>
+									<a href="?lang=ru" style="padding: 0px;"><span style="margin-right: 5px;" class="flag flag-ru pull-right"></span></a>
+								</a>
+							</li>
+																		<li>
+															<a href="/logout">Выйти</a>
+													</li>
+					</ul>
+					</div><!--/.nav-collapse -->
+	  </div>
+	</nav>
+	<script>
+		$('.dropdown-submenu > a').submenupicker();
+	</script>
+   <script src="https://apis.google.com/js/platform.js"></script>
+
+    <div class="container">
+         <div class="table-responsive">
+	<h3>
+		Список Ваших платежей		<a class="btn btn-success pull-right" role="button" href="/customer/topup">
+			Пополнить счет		</a>
+	</h3>
+
+	<form role="form" method="get" class="form-inline">
+		<h4 class="form-inline">Поиск</h4>
+		<div class="form-group">
+			<label for="accountId">Статус:</label>
+			<select class="form-control required" name="status">
+				<option value="">Выберите статус платежа</option>
+								<option value="0" >В обработке</option>
+								<option value="1" >Оплачен</option>
+								<option value="2" >Отказ</option>
+								<option value="3" >В ожидании</option>
+								<option value="5" >Бонус</option>
+								<option value="6" >Возврат</option>
+								<option value="7" >Удален</option>
+							</select>
+		</div>
+		<input type="submit" class="btn btn-primary" value="Найти">
+	</form>
+	<script>
+    var paramName = 'page';
+
+    function goToPage(page){
+        str = '&';
+        if (num = getParameterByName(paramName)){
+            if (window.location.href.indexOf('?' + paramName + '=' + num) !== -1){str = '?';}
+            window.location.href = window.location.href.replace(str + paramName + '=' + num, str + paramName + '=' + page);
+        }else{
+            if (window.location.href.indexOf('?') == -1){str = '?';}
+            window.location.href += str + paramName + '=' + page;
+        }
+    }
+
+    function getParameterByName(name) {
+        var match = RegExp('[?&]' + name + '=([^&]*)')
+                        .exec(window.location.search);
+        return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+    }
+</script>
+
+<nav>
+    <ul class="pagination pull-left">
+
+            <li class="active"><a>1</a></li>
+
+                                <li><a class="page" onclick="goToPage(2)">2</a></li>
+                    </ul>
+
+        <div class="pull-left" style="margin: 26px 0px 26px 10px">
+            Всего: <strong>54</strong>
+        </div>
+    </nav>
+	<table class="table table-striped table-hover">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Дата создания</th>
+				<th>Дата оплаты</th>
+				<th>Дата отказа</th>
+				<th>Дата введения в обработку</th>
+				<th>Сумма, грн</th>
+				<th>Сумма, $</th>
+				<th>Статус</th>
+				<th>Комментарий</th>
+			</tr>
+		</thead>
+		<tbody>
+							<tr class=" ">
+					<td>319084</td>
+					<td>2019-05-14 09:39:37</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>1.03</td>
+					<td>0.00</td>
+					<td>В обработке</td>
+					<td></td>
+ 				</tr>
+							<tr class=" ">
+					<td>319083</td>
+					<td>2019-05-14 09:36:18</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>205.55</td>
+					<td>0.00</td>
+					<td>В обработке</td>
+					<td></td>
+ 				</tr>
+							<tr class=" ">
+					<td>319082</td>
+					<td>2019-05-14 09:08:04</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>205.55</td>
+					<td>0.00</td>
+					<td>В обработке</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>319079</td>
+					<td>2019-05-14 08:58:36</td>
+					<td>2019-05-14 09:02:38</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>205.55</td>
+					<td>7.66</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>318401</td>
+					<td>2019-04-22 09:20:31</td>
+					<td>2019-04-22 09:23:55</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>205.55</td>
+					<td>7.46</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>317824</td>
+					<td>2019-04-04 20:53:15</td>
+					<td>2019-04-04 20:56:40</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>205.55</td>
+					<td>7.45</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>36143</td>
+					<td>2019-03-07 12:09:12</td>
+					<td>2019-03-07 12:15:35</td>
+					<td>2019-03-07 12:12:29</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>205.55</td>
+					<td>7.59</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>34588</td>
+					<td>2019-01-16 14:07:00</td>
+					<td>2019-01-16 14:12:10</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>205.55</td>
+					<td>7.21</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>31821</td>
+					<td>2018-10-18 19:23:14</td>
+					<td>2018-10-18 19:27:17</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>205.00</td>
+					<td>7.13</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>30861</td>
+					<td>2018-09-21 11:35:11</td>
+					<td>2018-09-21 11:46:28</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>205.00</td>
+					<td>7.18</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>30065</td>
+					<td>2018-08-27 17:56:23</td>
+					<td>2018-08-27 17:58:27</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>200.00</td>
+					<td>7.22</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>29547</td>
+					<td>2018-08-10 21:03:22</td>
+					<td>2018-08-10 21:06:37</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>200.00</td>
+					<td>7.34</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="danger ">
+					<td>29546</td>
+					<td>2018-08-10 20:50:50</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>2018-08-11 06:50:51</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>200.00</td>
+					<td>7.34</td>
+					<td>Отказ</td>
+					<td></td>
+ 				</tr>
+							<tr class="danger ">
+					<td>29545</td>
+					<td>2018-08-10 20:49:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>2018-08-11 06:49:01</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>200.00</td>
+					<td>7.34</td>
+					<td>Отказ</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>29374</td>
+					<td>2018-08-04 15:11:17</td>
+					<td>2018-08-04 15:13:33</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>200.00</td>
+					<td>7.57</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>27759</td>
+					<td>2018-06-11 21:49:44</td>
+					<td>2018-06-11 21:51:34</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>200.00</td>
+					<td>7.57</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>22664</td>
+					<td>2018-02-15 16:22:34</td>
+					<td>2018-02-15 16:25:26</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>200.00</td>
+					<td>7.46</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>20839</td>
+					<td>2018-01-18 16:11:40</td>
+					<td>2018-01-18 16:14:32</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>200.00</td>
+					<td>6.94</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>19810</td>
+					<td>2017-12-23 13:47:12</td>
+					<td>2017-12-23 13:50:43</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>250.00</td>
+					<td>8.95</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>18985</td>
+					<td>2017-11-24 15:43:40</td>
+					<td>2017-11-24 15:48:35</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>250.00</td>
+					<td>9.40</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>18791</td>
+					<td>2017-11-16 16:57:05</td>
+					<td>2017-11-16 16:59:50</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>100.00</td>
+					<td>3.76</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>16993</td>
+					<td>2017-09-12 17:17:53</td>
+					<td>2017-09-12 17:21:05</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>200.00</td>
+					<td>7.68</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>16738</td>
+					<td>2017-09-03 20:12:45</td>
+					<td>2017-09-03 20:14:34</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>100.00</td>
+					<td>3.88</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>16294</td>
+					<td>2017-08-14 17:45:01</td>
+					<td>2017-08-14 17:48:22</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>250.00</td>
+					<td>9.74</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>16117</td>
+					<td>2017-08-06 00:45:21</td>
+					<td>2017-08-06 00:47:40</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>250.00</td>
+					<td>9.66</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>15815</td>
+					<td>2017-07-27 18:59:03</td>
+					<td>2017-07-27 19:01:38</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>250.00</td>
+					<td>9.66</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>15550</td>
+					<td>2017-07-16 15:52:37</td>
+					<td>2017-07-16 15:55:08</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>250.00</td>
+					<td>9.61</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>14892</td>
+					<td>2017-06-22 16:06:50</td>
+					<td>2017-06-22 16:08:26</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>150.00</td>
+					<td>5.76</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>14874</td>
+					<td>2017-06-22 12:18:47</td>
+					<td>2017-06-22 12:20:18</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>250.00</td>
+					<td>9.61</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>14847</td>
+					<td>2017-06-21 00:10:49</td>
+					<td>2017-06-21 00:13:32</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>100.00</td>
+					<td>3.74</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>13830</td>
+					<td>2017-05-15 16:54:39</td>
+					<td>2017-05-15 16:57:32</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>500.00</td>
+					<td>18.68</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>13186</td>
+					<td>2017-04-21 14:34:57</td>
+					<td>2017-04-21 14:36:57</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>536.00</td>
+					<td>20.03</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>13013</td>
+					<td>2017-04-12 18:36:36</td>
+					<td>2017-04-12 18:39:31</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>200.00</td>
+					<td>7.43</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>12706</td>
+					<td>2017-04-04 09:41:23</td>
+					<td>2017-04-04 09:41:23</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>200.00</td>
+					<td>7.41</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>12521</td>
+					<td>2017-03-27 21:06:00</td>
+					<td>2017-03-27 21:08:35</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>200.00</td>
+					<td>7.37</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class=" ">
+					<td>12256</td>
+					<td>2017-03-17 13:11:17</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>180.00</td>
+					<td>0.00</td>
+					<td>Бонус</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>12255</td>
+					<td>2017-03-17 13:10:27</td>
+					<td>2017-03-17 13:10:27</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>180.00</td>
+					<td>6.67</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success danger">
+					<td>12254</td>
+					<td>2017-03-17 13:03:33</td>
+					<td>2017-03-17 13:03:33</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>180.00</td>
+					<td>6.67</td>
+					<td>Кредит</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>12155</td>
+					<td>2017-03-11 15:13:21</td>
+					<td>2017-03-11 15:13:21</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>180.00</td>
+					<td>6.73</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>11778</td>
+					<td>2017-03-01 13:32:14</td>
+					<td>2017-03-01 13:32:14</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>40.00</td>
+					<td>1.47</td>
+					<td>Оплачен</td>
+					<td>8% extra for international women's day promotion</td>
+ 				</tr>
+							<tr class="success ">
+					<td>11756</td>
+					<td>2017-03-01 01:24:35</td>
+					<td>2017-03-01 01:26:07</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>500.00</td>
+					<td>18.38</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>11585</td>
+					<td>2017-02-22 16:08:25</td>
+					<td>2017-02-22 16:10:21</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>300.00</td>
+					<td>11.09</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>11204</td>
+					<td>2017-02-07 17:00:41</td>
+					<td>2017-02-07 17:02:28</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>500.00</td>
+					<td>18.41</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>10892</td>
+					<td>2017-01-26 17:11:55</td>
+					<td>2017-01-26 17:14:34</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>500.00</td>
+					<td>18.38</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>10064</td>
+					<td>2017-01-03 06:47:35</td>
+					<td>2017-01-03 06:47:35</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>48.79</td>
+					<td>1.80</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>10063</td>
+					<td>2017-01-03 06:44:04</td>
+					<td>2017-01-03 06:47:11</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>1000.00</td>
+					<td>36.89</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>9429</td>
+					<td>2016-12-15 21:54:42</td>
+					<td>2016-12-15 21:57:04</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>500.00</td>
+					<td>18.97</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>9171</td>
+					<td>2016-12-05 10:17:32</td>
+					<td>2016-12-05 10:22:21</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>300.00</td>
+					<td>11.54</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>8991</td>
+					<td>2016-11-25 21:39:23</td>
+					<td>2016-11-25 21:44:19</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>150.00</td>
+					<td>5.82</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+							<tr class="success ">
+					<td>8743</td>
+					<td>2016-11-19 19:31:35</td>
+					<td>2016-11-19 19:35:55</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>0000-00-00 00:00:00</td>
+					<td>100.00</td>
+					<td>3.87</td>
+					<td>Оплачен</td>
+					<td></td>
+ 				</tr>
+					</tbody>
+	</table>
+	<script>
+    var paramName = 'page';
+
+    function goToPage(page){
+        str = '&';
+        if (num = getParameterByName(paramName)){
+            if (window.location.href.indexOf('?' + paramName + '=' + num) !== -1){str = '?';}
+            window.location.href = window.location.href.replace(str + paramName + '=' + num, str + paramName + '=' + page);
+        }else{
+            if (window.location.href.indexOf('?') == -1){str = '?';}
+            window.location.href += str + paramName + '=' + page;
+        }
+    }
+
+    function getParameterByName(name) {
+        var match = RegExp('[?&]' + name + '=([^&]*)')
+                        .exec(window.location.search);
+        return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+    }
+</script>
+
+<nav>
+    <ul class="pagination pull-left">
+
+            <li class="active"><a>1</a></li>
+
+                                <li><a class="page" onclick="goToPage(2)">2</a></li>
+                    </ul>
+
+        <div class="pull-left" style="margin: 26px 0px 26px 10px">
+            Всего: <strong>54</strong>
+        </div>
+    </nav></div>    </div>
+</div>
+<div class="modal fade" id="notificationsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title" id="myModalLabel">Новости проекта ChatOS</h4>
+		</div>
+		<div class="modal-body">
+			<div class="list-group">
+
+					<a href="https://chatoptimizer.com/?p=11054" postId="153" class="list-group-item active2" target="_blank" new="1">
+						<table>
+							<tr>
+								<td>
+									<img src="https://chatoptimizer.com/wp-content/uploads/2017/05/3.1.jpg" alt="" class="img-thumbnail">
+								</td>
+								<td style="padding-left: 10px">
+									<h4>Prime.Date Новый вебинар  Прокачай чаты на максимум <span class="label label-primary">New</span></h4>
+									<p>21 мая в 15.00 (Киев/Мск) Переводчикам и Администраторам явка крайне рекомендована! Регистрируйтесь скорее! </p>
+								</td>
+							</tr>
+						</table>
+						<small class="text-primary">Читать далее...</small>
+					</a>
+
+					<a href="https://chatoptimizer.com/?p=10672" postId="151" class="list-group-item active2" target="_blank" new="1">
+						<table>
+							<tr>
+								<td>
+									<img src="https://chatoptimizer.com/wp-content/uploads/2017/05/3.1.jpg" alt="" class="img-thumbnail">
+								</td>
+								<td style="padding-left: 10px">
+									<h4>Важно знать все! <span class="label label-primary">New</span></h4>
+									<p>Кто владеет информацией... Сегодня для Вас - подборка контактов от ChatOS. Сохраните и поделитесь с коллегами.</p>
+								</td>
+							</tr>
+						</table>
+						<small class="text-primary">Читать далее...</small>
+					</a>
+
+					<a href="https://chatoptimizer.com/?p=10123" postId="149" class="list-group-item active2" target="_blank" new="1">
+						<table>
+							<tr>
+								<td>
+									<img src="https://chatoptimizer.com/wp-content/uploads/2017/05/3.1.jpg" alt="" class="img-thumbnail">
+								</td>
+								<td style="padding-left: 10px">
+									<h4>Срочная Новость! Важно Переводчикам! <span class="label label-primary">New</span></h4>
+									<p>Если у Вас обновился Google Chrome, и Вас коснулась проблема с работой расширений, то  для Вас информация как продолжить работу без проблем.</p>
+								</td>
+							</tr>
+						</table>
+						<small class="text-primary">Читать далее...</small>
+					</a>
+
+					<a href="https://chatoptimizer.com/?p=10050" postId="148" class="list-group-item active2" target="_blank" new="1">
+						<table>
+							<tr>
+								<td>
+									<img src="https://chatoptimizer.com/wp-content/uploads/2017/05/3.1.jpg" alt="" class="img-thumbnail">
+								</td>
+								<td style="padding-left: 10px">
+									<h4>Переводчикам и администраторам. <span class="label label-primary">New</span></h4>
+									<p>Информирование, объяснение, ответы на самые горячие вопросы, помощь в понимании и решении проблем - для Вас.</p>
+								</td>
+							</tr>
+						</table>
+						<small class="text-primary">Читать далее...</small>
+					</a>
+
+					<a href="https://chatoptimizer.com/?p=9613" postId="147" class="list-group-item active2" target="_blank" new="1">
+						<table>
+							<tr>
+								<td>
+									<img src="https://chatoptimizer.com/wp-content/uploads/2017/05/3.1.jpg" alt="" class="img-thumbnail">
+								</td>
+								<td style="padding-left: 10px">
+									<h4>+8% к 8 Марта <span class="label label-primary">New</span></h4>
+									<p>Настало время подарков!  ChatOS уже готовит подарки для Вас...</p>
+								</td>
+							</tr>
+						</table>
+						<small class="text-primary">Читать далее...</small>
+					</a>
+
+					<a href="https://chatoptimizer.com/?p=9552" postId="146" class="list-group-item active2" target="_blank" new="1">
+						<table>
+							<tr>
+								<td>
+									<img src="https://chatoptimizer.com/wp-content/uploads/2017/05/3.1.jpg" alt="" class="img-thumbnail">
+								</td>
+								<td style="padding-left: 10px">
+									<h4>Прорыв по ответам на Prime.Date. 'Пробивной набор' поставил рекорды отвечаемости от мужчин! <span class="label label-primary">New</span></h4>
+									<p>'Пробивной набор' в работе 10 дней,  спешим сообщить результаты...</p>
+								</td>
+							</tr>
+						</table>
+						<small class="text-primary">Читать далее...</small>
+					</a>
+
+					<a href="https://chatoptimizer.com/?p=9493" postId="145" class="list-group-item active2" target="_blank" new="1">
+						<table>
+							<tr>
+								<td>
+									<img src="https://chatoptimizer.com/wp-content/uploads/2017/05/3.1.jpg" alt="" class="img-thumbnail">
+								</td>
+								<td style="padding-left: 10px">
+									<h4>По Вашим просьбам <span class="label label-primary">New</span></h4>
+									<p>В связи с тем, что единственный способ для  переводчиков получить полную, подробную информацию по пользованию каждым инструментом расширения и как использовать каждое обновление - это прочесть ее в...</p>
+								</td>
+							</tr>
+						</table>
+						<small class="text-primary">Читать далее...</small>
+					</a>
+
+					<a href="https://chatoptimizer.com/?p=9484" postId="144" class="list-group-item active2" target="_blank" new="1">
+						<table>
+							<tr>
+								<td>
+									<img src="https://chatoptimizer.com/wp-content/uploads/2017/05/3.1.jpg" alt="" class="img-thumbnail">
+								</td>
+								<td style="padding-left: 10px">
+									<h4>ТРИ ТАБУ для 'Пробивного набора' <span class="label label-primary">New</span></h4>
+									<p>ЧТО КАТЕГОРИЧЕСКИ НЕЛЬЗЯ делать  в работе с 'Пробивным набором' в расширении для чатов на Prime.Date.</p>
+								</td>
+							</tr>
+						</table>
+						<small class="text-primary">Читать далее...</small>
+					</a>
+
+					<a href="https://chatoptimizer.com/?p=9385" postId="143" class="list-group-item active2" target="_blank" new="1">
+						<table>
+							<tr>
+								<td>
+									<img src="https://chatoptimizer.com/wp-content/uploads/2017/05/3.1.jpg" alt="" class="img-thumbnail">
+								</td>
+								<td style="padding-left: 10px">
+									<h4>РЕШЕНИЕ ПРОБЛЕМЫ НЕОТВЕТА ОТ МУЖЧИН НА PRIME.DATE <span class="label label-primary">New</span></h4>
+									<p>Опубликовано обновленное расширение для чатов на Prime.Date. Работа 'на доставку'. Здесь о функционале, которому нет аналога.</p>
+								</td>
+							</tr>
+						</table>
+						<small class="text-primary">Читать далее...</small>
+					</a>
+
+					<a href="https://chatoptimizer.com/?p=9288" postId="142" class="list-group-item active2" target="_blank" new="1">
+						<table>
+							<tr>
+								<td>
+									<img src="https://chatoptimizer.com/wp-content/uploads/2017/05/3.1.jpg" alt="" class="img-thumbnail">
+								</td>
+								<td style="padding-left: 10px">
+									<h4>О НОВЫХ ПРАВИЛАХ ДОСТАВКИ НА САЙТЕ PRIME.DATE <span class="label label-primary">New</span></h4>
+									<p>Подробно: почему мужчины не отвечают, что изменилось, как это работает, какой выход из ситуации.</p>
+								</td>
+							</tr>
+						</table>
+						<small class="text-primary">Читать далее...</small>
+					</a>
+
+					<a href="https://chatoptimizer.com/?p=9176" postId="140" class="list-group-item active2" target="_blank" new="1">
+						<table>
+							<tr>
+								<td>
+									<img src="https://chatoptimizer.com/wp-content/uploads/2017/05/2-.1.jpg" alt="" class="img-thumbnail">
+								</td>
+								<td style="padding-left: 10px">
+									<h4>О проведении вечеров знакомств <span class="label label-primary">New</span></h4>
+									<p>Елена Ковалевская. Основательница международного брачного агентства  'Happy Family' o формате  проведении вечеров знакомств</p>
+								</td>
+							</tr>
+						</table>
+						<small class="text-primary">Читать далее...</small>
+					</a>
+
+					<a href="https://chatoptimizer.com/?p=9126" postId="139" class="list-group-item active2" target="_blank" new="1">
+						<table>
+							<tr>
+								<td>
+									<img src="https://chatoptimizer.com/wp-content/uploads/2017/05/2-.1.jpg" alt="" class="img-thumbnail">
+								</td>
+								<td style="padding-left: 10px">
+									<h4>Бизнес в столице ниши рынка международных знакомств VS бизнес в 'глубинке'. О шансах на успех. <span class="label label-primary">New</span></h4>
+									<p>Елена Выгнанюк CEO 'Life Lines' о:  местоположении брачного агентства, выборе партнеров и определении зон ответственности в работе с клиентами.</p>
+								</td>
+							</tr>
+						</table>
+						<small class="text-primary">Читать далее...</small>
+					</a>
+
+					<a href="https://chatoptimizer.com/?p=8818" postId="138" class="list-group-item active2" target="_blank" new="1">
+						<table>
+							<tr>
+								<td>
+									<img src="https://chatoptimizer.com/wp-content/uploads/2017/05/2-.1.jpg" alt="" class="img-thumbnail">
+								</td>
+								<td style="padding-left: 10px">
+									<h4>Продолжаем о Письмах:  'о чем писать' и 'как писать' <span class="label label-primary">New</span></h4>
+									<p>Нужно ли говорить о детях в первом письме?  Как у Вас построено обучение переводчика?</p>
+								</td>
+							</tr>
+						</table>
+						<small class="text-primary">Читать далее...</small>
+					</a>
+
+					<a href="https://chatoptimizer.com/?p=7785" postId="136" class="list-group-item active2" target="_blank" new="1">
+						<table>
+							<tr>
+								<td>
+									<img src="https://chatoptimizer.com/wp-content/uploads/2017/05/3.1.jpg" alt="" class="img-thumbnail">
+								</td>
+								<td style="padding-left: 10px">
+									<h4>Итоги 2018 года <span class="label label-primary">New</span></h4>
+									<p> Год был насыщенным и интересным. И мы готовы поделиться результатами.</p>
+								</td>
+							</tr>
+						</table>
+						<small class="text-primary">Читать далее...</small>
+					</a>
+
+					<a href="https://chatoptimizer.com/?p=7822" postId="137" class="list-group-item active2" target="_blank" new="1">
+						<table>
+							<tr>
+								<td>
+									<img src="https://chatoptimizer.com/wp-content/uploads/2017/05/3.1.jpg" alt="" class="img-thumbnail">
+								</td>
+								<td style="padding-left: 10px">
+									<h4>Итоги декабря <span class="label label-primary">New</span></h4>
+									<p>Последний месяц года 2018 заканчивается. Время отчитаться о проделанной работе и праздновать.</p>
+								</td>
+							</tr>
+						</table>
+						<small class="text-primary">Читать далее...</small>
+					</a>
+
+					<a href="https://chatoptimizer.com/?p=7446" postId="133" class="list-group-item active2" target="_blank" new="1">
+						<table>
+							<tr>
+								<td>
+									<img src="https://chatoptimizer.com/wp-content/uploads/2017/05/2-.1.jpg" alt="" class="img-thumbnail">
+								</td>
+								<td style="padding-left: 10px">
+									<h4>О подготовке и проведении встреч в брачном агентстве. Как организовать встречу, которая удовлетворит ожидания клиентов и добавит + к имиджу агентства. <span class="label label-primary">New</span></h4>
+									<p>В рубрике “Интервью с экспертом” - Елена Сосновская, руководитель MegaLove dating agency</p>
+								</td>
+							</tr>
+						</table>
+						<small class="text-primary">Читать далее...</small>
+					</a>
+
+					<a href="https://chatoptimizer.com/?p=7557" postId="135" class="list-group-item active2" target="_blank" new="1">
+						<table>
+							<tr>
+								<td>
+									<img src="https://chatoptimizer.com/wp-content/uploads/2017/05/3.1.jpg" alt="" class="img-thumbnail">
+								</td>
+								<td style="padding-left: 10px">
+									<h4>Итоги ноября <span class="label label-primary">New</span></h4>
+									<p>Подводим итоги ноября и узнаем об обновлениях  для сайтов PrimeDate і Svadba.com</p>
+								</td>
+							</tr>
+						</table>
+						<small class="text-primary">Читать далее...</small>
+					</a>
+
+					<a href="https://chatoptimizer.com/?p=7378" postId="131" class="list-group-item active2" target="_blank" new="1">
+						<table>
+							<tr>
+								<td>
+									<img src="https://chatoptimizer.com/wp-content/uploads/2017/05/2-.1.jpg" alt="" class="img-thumbnail">
+								</td>
+								<td style="padding-left: 10px">
+									<h4>Почему письма работают <span class="label label-primary">New</span></h4>
+									<p>5 показателей, которые раскроют прибыльность писем.Эти данные именно для Вас!</p>
+								</td>
+							</tr>
+						</table>
+						<small class="text-primary">Читать далее...</small>
+					</a>
+
+					<a href="https://chatoptimizer.com/?p=7370" postId="132" class="list-group-item active2" target="_blank" new="1">
+						<table>
+							<tr>
+								<td>
+									<img src="https://chatoptimizer.com/wp-content/uploads/2017/05/2-.1.jpg" alt="" class="img-thumbnail">
+								</td>
+								<td style="padding-left: 10px">
+									<h4>О работе с возражениями женщин и мужчин - клиентов брачных агентств <span class="label label-primary">New</span></h4>
+									<p>Елена Ковалевская. Основательница международного брачного агентства "Happy Family"</p>
+								</td>
+							</tr>
+						</table>
+						<small class="text-primary">Читать далее...</small>
+					</a>
+
+					<a href="https://chatoptimizer.com/?p=7292" postId="129" class="list-group-item active2" target="_blank" new="1">
+						<table>
+							<tr>
+								<td>
+									<img src="https://chatoptimizer.com/wp-content/uploads/2017/05/2-.1.jpg" alt="" class="img-thumbnail">
+								</td>
+								<td style="padding-left: 10px">
+									<h4>Какие письма помогут увеличить Ваш доход до 30%   на международных сайтах знакомств <span class="label label-primary">New</span></h4>
+									<p> Какой набор слов и фраз стоит использовать, чтоб мужчина заинтересовался девушкой? Исключительно для тех, кто действует и готов получать фидбек.</p>
+								</td>
+							</tr>
+						</table>
+						<small class="text-primary">Читать далее...</small>
+					</a>
+							</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Закрыть окно</button>
+		</div>
+		</div>
+	</div>
+</div>
+
+<style>
+	#notificationWindow{
+		text-align: center;
+		position: fixed;
+		right: 0px;
+		top: 40%;
+		opacity: 0.5;
+		border: 2px solid grey;
+		border-radius: 10px;
+	}
+	#notificationWindow:hover{
+		opacity: 1;
+	}
+	#notificationWindow{
+		/*top: calc(40% + 60px);*/
+		top: 80px;
+	}
+
+	#notificationsModal a{
+		position: relative;
+	}
+	#notificationsModal a img{
+		max-height: 90px;
+		max-width: 90px;
+	}
+	#notificationsModal a small{
+		position: absolute;
+		bottom: 2px;
+		right: 15px;
+	}
+</style>
+<script>
+	var notCount = 94;
+	$("#notificationsModal a").on('click', function(){
+		if ($(this).attr("new") == 1){
+			$(this).find("span.label").remove();
+			$.post("/ajaxDev/addPostReview", {postId: $(this).attr("postId")});
+			$("#newMenuButton span").html((parseInt($("#newMenuButton span").html() - 1) > 0 ? parseInt($("#newMenuButton span").html() - 1) : ''));
+		}
+	});
+	if (notCount){
+		$("#newMenuButton span").html(notCount);
+	}
+
+						/*drawNotice({
+				postId:'153',
+				link:'https://chatoptimizer.com/?p=11054',
+				image:'https://chatoptimizer.com/wp-content/uploads/2017/05/3.1.jpg',
+				text:'21 мая в 15.00 (Киев/Мск) Переводчикам и Администраторам явка крайне рекомендована! Регистрируйтесь скорее! ',
+				header: 'Prime.Date Новый вебинар  Прокачай чаты на максимум'
+			});*/
+			drawNotice({"postId":"153","link":"https:\/\/chatoptimizer.com\/?p=11054","image":"https:\/\/chatoptimizer.com\/wp-content\/uploads\/2017\/05\/3.1.jpg","text":"21 \u043c\u0430\u044f \u0432 15.00 (\u041a\u0438\u0435\u0432\/\u041c\u0441\u043a) \u041f\u0435\u0440\u0435\u0432\u043e\u0434\u0447\u0438\u043a\u0430\u043c \u0438 \u0410\u0434\u043c\u0438\u043d\u0438\u0441\u0442\u0440\u0430\u0442\u043e\u0440\u0430\u043c \u044f\u0432\u043a\u0430 \u043a\u0440\u0430\u0439\u043d\u0435 \u0440\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u043e\u0432\u0430\u043d\u0430! \u0420\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u0443\u0439\u0442\u0435\u0441\u044c \u0441\u043a\u043e\u0440\u0435\u0435! ","header":"Prime.Date \u041d\u043e\u0432\u044b\u0439 \u0432\u0435\u0431\u0438\u043d\u0430\u0440  \u041f\u0440\u043e\u043a\u0430\u0447\u0430\u0439 \u0447\u0430\u0442\u044b \u043d\u0430 \u043c\u0430\u043a\u0441\u0438\u043c\u0443\u043c"});
+			setTimeout(showHideNotice, 10000);
+
+</script>
+<div id="footer" class="navbar-default">
+
+	<div class="container">
+		<div class="pull-left">
+			Все права защищены © 2014 - 2019 ChatOS
+		</div>
+		<div class="pull-right">
+
+			                <small>Ваша реферальная ссылка: <a class="referId" data-toggle="tooltip" title="Скопировано в буфер">https://account.chatoptimizer.com/register?referId=O75NLZJF</a></small>
+								</div>
+	</div>
+	</div>
+<style>
+	#skypeButton a{
+		overflow: hidden;
+	}
+
+	#skypeButton{
+		position: fixed;
+		bottom: 5px;
+		right: 20px;
+		width: 90px;
+		opacity: 0.4;
+	}
+	#skypeButton:hover{
+		opacity: 1;
+	}
+	#skypeButton a:hover{
+		color: white !important;
+		text-decoration: none;
+		border-radius: 30px 0px 30px 30px;
+	}
+
+	#skypeButton #closeSkypeButton{
+		position: absolute;
+		top: 2px;
+		right: 2px;
+		font-size: 12px;
+		line-height: 7px;
+		padding: 0px 1px 3px 1px;
+	}
+	#skypeButton #closeSkypeButton:hover{
+		border: 1px solid white;
+		margin: -1px -1px 0px 0px;
+	}
+
+	#skypeButton .lwc-chat-button .unreadMessageIndicator{
+		z-index: 1 !important;
+	}
+
+	#skypeButton .lwc-chat-button .unreadMessageIndicator .heading{
+		line-height: 18px;
+	}
+
+    .referId {
+        cursor: pointer;
+        color: #000;
+    }
+    .referId:hover {
+        color: #000;
+        text-decoration: none;
+        background-color: rgba(204, 204, 204, 0.33);
+    }
+</style>
+
+<script>
+    function copyToClipboard(element) {
+        var $temp = $("<input>");
+        $("body").append($temp);
+        $temp.val($(element).text()).select();
+        document.execCommand("copy");
+        $temp.remove();
+    }
+
+    $('.referId').on('click', function () {
+        copyToClipboard('.referId');
+        setTimeout(function() {
+            $('.referId').tooltip('hide');
+        }, 1000);
+    });
+
+    $('.referId').tooltip({
+        trigger: 'click',
+        placement: 'top'
+    });
+
+</script>
+    <style>
+	#sellTicketsList li{
+		margin: 14px 0px;
+	}
+	#sellTicketsList table td.bordered{
+		border: 1px solid #e1e1e1;
+		border-top: 0px;
+	}
+	#sellTicketsList ul {
+		font-size: 13pt;
+	}
+	#sellTicketsList .bordered label, #sellTicketsList .bordered select {
+		font-size: 13pt;
+		color: black;
+	}
+	#sellTicketsList table{
+		border-radius: 13px 13px 0px 0px;
+		color: #585858;
+	}
+	#sellTicketsList table:hover{
+		background-color: #fafafa;
+		cursor: pointer;
+	}
+
+	#sellTicketsList .ticketPrice{
+		color: #333333;
+		font-size: 15pt;
+	}
+
+	#sellTicketsList .ticketHeader{
+		font-size: 28pt;
+		border: 0px;
+		border-radius: 13px 13px 0px 0px;
+		text-transform: uppercase;
+	}
+	#sellTicketsList .ticketHeader.business{
+		background: linear-gradient(to top, #b5b5b5 0%, #e1e1e1 36%, #b5b5b5 100%);
+	}
+	#sellTicketsList .ticketHeader.gold{
+		background: linear-gradient(to top, #d2b20b 0%, #ffd700 36%, #d2b20b 100%);
+	}
+	#sellTicketsList .ticketHeader.elite{
+		background: linear-gradient(to top, #05820e 0%, #35a53d 36%, #05820e 100%);
+	}
+	#sellTicketsList .ticketHeader h2{
+		font-weight: bold; color: white;
+	}
+
+	.ticketDescription .panel-body>.col-md-12>div{
+		padding-left: 0px;
+	}
+
+	#sellTicketsListDescription .ticketDescription{
+		width: calc(100% - 15px);
+	}
+
+	.ticketDescription>.panel-heading.gold{
+		background-color: rgba(255, 223, 52, 0.77);;
+	}
+	.ticketDescription>.panel-heading.elite{
+		background-color: #36a53c;
+		color: white;
+	}
+
+	#sellTicketsListDescription .ticketsList{
+		width: calc(100% - 15px);
+	}
+	.ticketDescription .ticketType{
+		text-transform: uppercase;
+	}
+
+	.btn-success{
+		cursor: pointer;
+	}
+
+	.flip-clock-wrapper ul li a div div.inn{
+		text-shadow: 0 1px 2px #2f9034;
+		background-color: #36a53c;
+		color: #fff;
+	}
+	.flip-clock-dot{
+		background: #1d6721;
+	}
+
+	.flip-clock-wrapper ul{
+		width: 50px;
+		height: 60px;
+	}
+	.flip-clock-wrapper ul li a div div.inn{
+		font-size: 50px;
+	}
+	.flip-clock-wrapper ul li{
+		line-height: 60px;
+	}
+	.flip-clock-divider{
+		height: 85px;
+	}
+	.flip-clock-dot.top{
+		top: 20px;
+	}
+	.clock.flip-clock-wrapper{
+		margin: 2em 0em 0em;
+		display: inline-block;
+		width: auto;
+		height: 40px;
+	}
+	@media (max-width: 650px) {
+		.clock.flip-clock-wrapper{
+			display: none !important;
+		}
+	}
+
+	.disabledCategory{
+		opacity: 0.2;
+	}
+	.disabledCategory:hover{
+		opacity: 1;
+	}
+</style>
+
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-76958656-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"fca21b0241","applicationID":"72925497","transactionName":"MVIDZkZTCEAFUxZfXAgYIFFAWwldS3MXRUcJWgRAG0YJQxFAKl9AElgTSw==","queueTime":0,"applicationTime":200,"atts":"HRUAEA5JG04=","errorBeacon":"bam.nr-data.net","agent":""}</script></body>
+</html>

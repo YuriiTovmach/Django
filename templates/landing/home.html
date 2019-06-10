@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="section-top">
+        <!--<img src="{% static 'img/slider0.jpg' %}" class="img-responsive">-->
+        {% include 'landing/slider.html' %}
+    </div>
+    <div class="section section1">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+
+                </div>
+
+                {% include 'landing/frame.html' %}
+
+                </div>
+        </div>
+    </div>
+    <div class="section section-delivery">
+        <div>
+            {% include 'landing/service.html' %}
+
+        </div>
+    </div>
+    <div class="section section2 phones-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="text-center">
+                        Проволока (OK) ГОСТ 3282-74
+                    </h1>
+                </div>
+                {% for product_image in products_images_ok %}
+                    {% include 'landing/product_item.html' %}
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+    <div class="section section3 laptops-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="text-center">
+                        Проволока вязальная
+                    </h1>
+                </div>
+                {% for product_image in products_images_knitting %}
+                    {% include 'landing/product_item.html' %}
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+    <div class="section section3 laptops-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="text-center">
+                        Проволока сварочная
+                    </h1>
+                </div>
+                {% for product_image in products_images_welding %}
+                    {% include 'landing/product_item.html' %}
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+    <div class="section section3 laptops-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="text-center">
+                        Проволока нихромовая
+                    </h1>
+                </div>
+                {% for product_image in products_images_nichrome %}
+                    {% include 'landing/product_item.html' %}
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+    <div class="section section3 laptops-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="text-center">
+                        Проволока оцинкованная
+                    </h1>
+                </div>
+                {% for product_image in products_images_galvanized %}
+                    {% include 'landing/product_item.html' %}
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+    <div class="section section3 laptops-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="text-center">
+                        Проволока пружинная
+                    </h1>
+                </div>
+                {% for product_image in products_images_spring %}
+                    {% include 'landing/product_item.html' %}
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

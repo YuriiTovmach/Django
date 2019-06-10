@@ -1,0 +1,12 @@
+{% for post in object_list %}
+        <div class="post">
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+            <h2>
+                <a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a>
+            </h2>
+            <p>{{ post.text|truncatechars_html:160 }}</p>
+        </div>
+{% endfor %}
+
