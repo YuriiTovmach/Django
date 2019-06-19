@@ -1,0 +1,13 @@
+.raight {
+  position: relative;
+  padding-right: 8em; /* чтобы элемент не был поверх содержимого родителя */
+}
+.raight div {
+  position: absolute; /* блок занимает ширину содержимого, max-width её ограничивает */
+  top: 0; /* прикрепить к верху родителя */
+  right: 0;
+  max-width: 8em;
+  min-height: 2em;
+  border-radius: 100px solid orange;
+  background: #fff5d7;
+}
