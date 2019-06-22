@@ -1,0 +1,13 @@
+dialog{
+border-radius: 40px;
+box-shadow: 10px 5px 5px red;
+background: orange;
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+#show{
+box-shadow: 3px 3px red, -1em 0 .4em olive;
+}
